@@ -45,15 +45,6 @@ Angela Peng (ap4636), Haoyuan Lu (hl3812)
 ([A-G][#b]?)([1-7])
 ```
 
-### CLEF
-- Token type: CLEF
-- Description: Musical notes, ranging from pitch (A-G) and octave number (1-7), optionally with sharp # or flat b.
-- Examples: `C6`, `D#6`
-- Regular Expression: 
-```
-([A-G][#b]?)([1-7])
-```
-
 ### Durations
 - Token type: DURATION
 - Description: Rhythmic durations, representing note lengths in musical notation. Though shorter note values are possible, we are limiting to 64th notes in our program.

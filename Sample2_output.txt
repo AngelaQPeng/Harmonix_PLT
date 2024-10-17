@@ -12,6 +12,7 @@
 <KEYWORD, keySig>
 <IDENTIFIER, H#>
 <IDENTIFIER, Major>
+<COMMENT, // identify invalid H# Major in parsing>
 <KEYWORD, pattern>
 <IDENTIFIER, Melody>
 <DELIMITER, {>
