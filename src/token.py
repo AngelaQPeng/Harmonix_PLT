@@ -2,14 +2,14 @@ from enum import Enum
 
 
 class TokenType(Enum):
-    IDENTIFIER = "Identifier"
+    KEYWORD = "Keyword"
     NOTE = "Note"
     DURATION = "Duration"
-    KEYWORD = "Keyword"
+    IDENTIFIER = "Identifier"
+    INTLITERAL = "IntLiteral"
     STRINGLITERAL = "StringLiteral"
     OPERATOR = "Operator"
     DELIMITER = "Delimiter"
-    INTLITERAL = "IntLiteral"
     COMMENT = "Comment"
     WHITESPACE = "Whitespace"
 
