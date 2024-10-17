@@ -2,7 +2,7 @@ title "Invalid Note and Duration"
 composer "Test Composer"
 staff Alto
 clef C
-timeSig 6/8
+timeSig "6/8"
 keySig G Major
 
 pattern ErrorPattern {

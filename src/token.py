@@ -2,16 +2,17 @@ from enum import Enum
 
 
 class TokenType(Enum):
-    KEYWORD = "Keyword"
-    NOTE = "Note"
-    DURATION = "Duration"
-    IDENTIFIER = "Identifier"
-    INTLITERAL = "IntLiteral"
-    STRINGLITERAL = "StringLiteral"
-    OPERATOR = "Operator"
-    DELIMITER = "Delimiter"
-    COMMENT = "Comment"
-    WHITESPACE = "Whitespace"
+    KEYWORD = "KEYWORD"
+    KEYSIG = "KEYSIG"
+    NOTE = "NOTE"
+    DURATION = "DURATION"
+    IDENTIFIER = "IDENTIFIER"
+    INTLITERAL = "INTLITERAL"
+    STRINGLITERAL = "STRINGLITERAL"
+    OPERATOR = "OPERATOR"
+    DELIMITER = "DELIMITER"
+    COMMENT = "COMMENT"
+    WHITESPACE = "WHITESPACE"
 
 
 class Token:

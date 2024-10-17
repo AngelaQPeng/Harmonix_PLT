@@ -1,0 +1,24 @@
+TokenType.KEYWORD: title
+TokenType.STRINGLITERAL: "Invalid Note and Duration
+TokenType.KEYWORD: composer
+TokenType.STRINGLITERAL: "Test Composer
+TokenType.KEYWORD: staff
+TokenType.IDENTIFIER: Alto
+TokenType.KEYWORD: clef
+TokenType.IDENTIFIER: C
+TokenType.KEYWORD: keySig
+TokenType.IDENTIFIER: G
+TokenType.IDENTIFIER: Major
+TokenType.KEYWORD: pattern
+TokenType.IDENTIFIER: ErrorPattern
+TokenType.DELIMITER: {
+TokenType.KEYWORD: note
+TokenType.IDENTIFIER: H4
+TokenType.KEYWORD: duration
+TokenType.DURATION: quarter
+TokenType.KEYWORD: note
+TokenType.NOTE: F4
+TokenType.KEYWORD: duration
+TokenType.IDENTIFIER: hihihi
+TokenType.DELIMITER: }
+TokenType.KEYWORD: end

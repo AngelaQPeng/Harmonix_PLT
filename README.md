@@ -30,10 +30,10 @@ Angela Peng (ap4636), Haoyuan Lu (hl3812)
 ### Key Signatures
 - Token type: KEYSIG
 - Description: Represents a musical key signature
-- Examples: `C Major`, `C# Minor`
+- Examples: `@C Major`, `@C# Minor`
 - Regular Expression: 
 ```
-[A-G][#b]? (Major|Minor)
+@[A-G][#b]? (Major|Minor)
 ```
 
 ### Notes
@@ -47,11 +47,11 @@ Angela Peng (ap4636), Haoyuan Lu (hl3812)
 
 ### Durations
 - Token type: DURATION
-- Description: Rhythmic durations, representing note lengths in musical notation. Though shorter note values are possible, we are limiting to 64th notes in our program.
+- Description: Rhythmic durations, representing note lengths in musical notation. Though shorter note values are possible, we are limiting to 16th notes in our program.
 - Examples: `whole`, `half`
 - Regular Expression: 
 ```
-(whole|half|quarter|eighth|sixteenth|32nd|64th)
+(whole|half|quarter|eighth|sixteenth)
 ```
 
 ### Identifiers

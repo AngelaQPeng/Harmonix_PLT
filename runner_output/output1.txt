@@ -1,0 +1,38 @@
+<KEYWORD, title>
+<STRINGLITERAL, "Simple Melody">
+<KEYWORD, composer>
+<STRINGLITERAL, "Angela Peng">
+<KEYWORD, staff>
+<IDENTIFIER, Treble>
+<KEYWORD, clef>
+<IDENTIFIER, G>
+<KEYWORD, timeSig>
+<STRINGLITERAL, "4/4">
+<KEYWORD, keySig>
+<KEYSIG, @C Major>
+<KEYWORD, pattern>
+<IDENTIFIER, MainMelody>
+<DELIMITER, {>
+<KEYWORD, note>
+<NOTE, C4>
+<KEYWORD, duration>
+<DURATION, quarter>
+<KEYWORD, note>
+<NOTE, E4>
+<KEYWORD, duration>
+<DURATION, quarter>
+<KEYWORD, note>
+<NOTE, G4>
+<KEYWORD, duration>
+<DURATION, quarter>
+<KEYWORD, note>
+<NOTE, C5>
+<KEYWORD, duration>
+<DURATION, quarter>
+<DELIMITER, }>
+<KEYWORD, repeat>
+<DELIMITER, {>
+<KEYWORD, pattern>
+<IDENTIFIER, MainMelody>
+<DELIMITER, }>
+<KEYWORD, end>
