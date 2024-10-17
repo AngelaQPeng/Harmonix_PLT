@@ -88,7 +88,7 @@ Angela Peng (ap4636), Haoyuan Lu (hl3812)
 - Examples: `:=`, `+`, `-`
 - Regular Expression: 
 ```
-:=|\+|\-|\*|/
+:=|\+|\-|\*
 ```
 
 ### Delimiters
@@ -116,6 +116,17 @@ Angela Peng (ap4636), Haoyuan Lu (hl3812)
 ```
 \s+
 ```
+
+## Error Handling
+We have a combination of warnings and exceptions to catch and report errors early.
+
+### Warnings for Recoverable Errors
+We used one `warning.warn()` functionality to raise warnings without halting the execution of the program for issues that do not compeltely break the lexical analysis. This is when the `@` symbol is missing in a key signature, the code would raise a `UserWarning` but continue scanning the rest of the key signature and perform the rest of the lexical analysis.
+```
+warnings.warn("Missing '@' symbol in key signature. Assuming '@' and continuing...", UserWarning)
+```
+### Exceptions for Critical Lexical Errors or Invalid Tokens
+We created a function `raise_lexical_error()` to raise exception for critical issues that prevent further scanning or when a valid token cannot be formed. These errors stop the scanning process immediately and raise an exception. Specifically, our sample test 3 and 5 in sample_input contains such errors to raise an exception.
 
 ## Set Up Project Locally
 ### Build Docker Image

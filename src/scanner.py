@@ -124,7 +124,6 @@ class Scanner:
         self.tokens.append(Token(TokenType.STRINGLITERAL, value))
 
 
-
     def scan_delimiter(self):
         self.tokens.append(Token(TokenType.DELIMITER, self.source_code[self.current_pos]))
         self.current_pos += 1
