@@ -65,8 +65,6 @@ class Scanner:
         else:
             warnings.warn("Missing '@' symbol in key signature. Assuming '@' and continuing...", UserWarning)
 
-            # self.print_error("Missing '@' symbol in key signature. Assuming '@' and continuing...")
-
         if self.current_pos < len(self.source_code) and self.source_code[self.current_pos] in 'ABCDEFG':
             letter = self.source_code[self.current_pos]
             self.current_pos += 1

@@ -128,7 +128,7 @@ warnings.warn("Missing '@' symbol in key signature. Assuming '@' and continuing.
 ### Exceptions for Critical Lexical Errors or Invalid Tokens
 We created a function `raise_lexical_error()` to raise exception for critical issues that prevent further scanning or when a valid token cannot be formed. These errors stop the scanning process immediately and raise an exception. Specifically, our sample test 3 and 5 in sample_input contains such errors to raise an exception.
 
-## Set Up Project Locally
+## Installation
 ### Build Docker Image
 To build the Docker image, navigate to the project root directory where the `Dockerfile` is located and run the following command:
 ```bash
