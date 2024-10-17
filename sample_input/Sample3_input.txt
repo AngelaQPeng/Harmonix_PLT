@@ -3,7 +3,7 @@ title "Nested Patterns Test"
 composer "Nested Composer"
 staff Bass
 clef F
-timeSig 3/4
+timeSig "3/4"
 keySig D Minor
 
 pattern Bassline {
