@@ -1,5 +1,5 @@
 from token import Token, TokenType
-
+import warnings
 
 class Scanner:
     def __init__(self, source_code):
@@ -14,7 +14,9 @@ class Scanner:
 
     def scan(self):
         while self.current_pos < len(self.source_code):
+            
             char = self.source_code[self.current_pos]
+            print(char)
             if char.isspace():
                 self.current_pos += 1
             elif char == '"':
@@ -23,12 +25,15 @@ class Scanner:
                 self.scan_comment()
             elif char in '{};,':
                 self.scan_delimiter()
-            elif char in ':=+-*/':
+            elif char in ':=+-*':
                 self.scan_operator()
             elif char == '@':
                 self.scan_key_signature()
             elif char.isalpha():
-                self.scan_letter()
+                if self.is_potential_key_signature():
+                    self.scan_key_signature()
+                else:
+                    self.scan_letter()
             elif char.isdigit():
                 self.scan_digit()
 
@@ -53,7 +58,14 @@ class Scanner:
 
     def scan_key_signature(self):
         start_pos = self.current_pos
-        self.current_pos += 1
+        # self.current_pos += 1
+
+        if self.source_code[self.current_pos] == '@':
+            self.current_pos += 1  # Move past the '@'
+        else:
+            warnings.warn("Missing '@' symbol in key signature. Assuming '@' and continuing...", UserWarning)
+
+            # self.print_error("Missing '@' symbol in key signature. Assuming '@' and continuing...")
 
         if self.current_pos < len(self.source_code) and self.source_code[self.current_pos] in 'ABCDEFG':
             letter = self.source_code[self.current_pos]
@@ -87,7 +99,7 @@ class Scanner:
         while self.current_pos < len(self.source_code) and self.source_code[self.current_pos].isdigit():
             self.current_pos += 1
         value = self.source_code[start_pos:self.current_pos]
-        return Token(TokenType.INTLITERAL, value)
+        self.tokens.append(Token(TokenType.INTLITERAL, value))
 
     def scan_operator(self):
         if self.peek() == '=':
@@ -104,11 +116,13 @@ class Scanner:
         self.current_pos += 1
         while self.current_pos < len(self.source_code) and self.source_code[self.current_pos] != '"':
             self.current_pos += 1
-        if self.current_pos == len(self.source_code) and self.source_code[self.current_pos] != '"':
-            self.raise_lexical_error("Wrong String Literal")
+        if self.current_pos >= len(self.source_code):
+            self.raise_lexical_error("Unterminated string literal")
+            return
         self.current_pos += 1
         value = self.source_code[start_pos:self.current_pos]
         self.tokens.append(Token(TokenType.STRINGLITERAL, value))
+
 
 
     def scan_delimiter(self):
@@ -126,3 +140,23 @@ class Scanner:
     def raise_lexical_error(self, message):
         raise Exception(f"Lexical Error: {message}")
 
+    def print_error(self, message):
+        # Print error and continue scanning
+        print(f"ERROR, {message}.")
+
+    def is_potential_key_signature(self):
+        lookahead_pos = self.current_pos
+
+        if self.source_code[lookahead_pos] in 'ABCDEFG':
+            lookahead_pos += 1
+
+            if lookahead_pos < len(self.source_code) and self.source_code[lookahead_pos] in '#b':
+                lookahead_pos += 1
+
+            if lookahead_pos < len(self.source_code) and self.source_code[lookahead_pos] == ' ':
+                lookahead_pos += 1
+
+                if self.source_code.startswith("Major", lookahead_pos) or self.source_code.startswith("Minor", lookahead_pos):
+                    return True
+
+        return False

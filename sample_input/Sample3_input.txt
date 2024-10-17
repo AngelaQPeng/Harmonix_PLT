@@ -1,10 +1,10 @@
-// Test nested patterns and repeat instructions
-title "Nested Patterns Test"
+// Test invalid Key Signature
+title "Invalid KeySig Test"
 composer "Nested Composer"
 staff Bass
 clef F
 timeSig "3/4"
-keySig D Minor
+keySig @H Minor // Should raise exception H Minor is not a valid Key Signature
 
 pattern Bassline {
     note D3 duration quarter
@@ -14,9 +14,8 @@ pattern Bassline {
 
 pattern Melody {
     note F4 duration quarter
-    repeat 3 {
-        pattern Bassline
-    }
 }
+
+final = Bassline + Melody
 
 end

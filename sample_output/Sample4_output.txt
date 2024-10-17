@@ -1,5 +1,5 @@
 <KEYWORD, title>
-<STRINGLITERAL, "Invalid Note and Duration">
+<STRINGLITERAL, "Valid Lexical Pattern">
 <KEYWORD, composer>
 <STRINGLITERAL, "Test Composer">
 <KEYWORD, staff>
@@ -7,24 +7,20 @@
 <KEYWORD, clef>
 <IDENTIFIER, C>
 <KEYWORD, timeSig>
-<INTLITERAL, 6>
-<DELIMITER, />
-<INTLITERAL, 8>
+<STRINGLITERAL, "6/8">
 <KEYWORD, keySig>
-<IDENTIFIER, G>
+<IDENTIFIER, H>
 <IDENTIFIER, Major>
 <KEYWORD, pattern>
-<IDENTIFIER, ErrorPattern>
+<IDENTIFIER, validLexicalPattern>
 <DELIMITER, {>
 <KEYWORD, note>
 <IDENTIFIER, H4>
 <KEYWORD, duration>
 <DURATION, quarter>
-<COMMENT, // Parser should handle H4 as invalid note>
 <KEYWORD, note>
-<IDENTIFIER, F4>
+<NOTE, F4>
 <KEYWORD, duration>
 <IDENTIFIER, hihihi>
-<COMMENT, // Parser should handle hihihi as invalid duration>
 <DELIMITER, }>
 <KEYWORD, end>

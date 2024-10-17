@@ -1,13 +1,16 @@
-title "Invalid Note and Duration"
+title "Valid Lexical Pattern"
 composer "Test Composer"
 staff Alto
 clef C
 timeSig "6/8"
-keySig G Major
+// "H Major" is not a valid keySig, but lexical analysis should still treat it as lexemes and continue processing.
+keySig H Major
 
-pattern ErrorPattern {
-    note H4 duration quarter    // Parser should handle H4 as invalid note
-    note F4 duration hihihi     // Parser should handle hihihi as invalid duration
+pattern validLexicalPattern {
+    // Although H4 is not a valid musical note, lexical analysis should still treat it as a lexeme and continue processing.
+    note H4 duration quarter    
+    // Even though "hihihi" is not a valid duration, lexical analysis should still treat it as a lexeme and continue processing.
+    note F4 duration hihihi     
 }
 
 end

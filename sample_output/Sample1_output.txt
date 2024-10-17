@@ -1,4 +1,3 @@
-<COMMENT, // Tests basic, valid structure with all lexical grammar rules present>
 <KEYWORD, title>
 <STRINGLITERAL, "Simple Melody">
 <KEYWORD, composer>
@@ -8,11 +7,9 @@
 <KEYWORD, clef>
 <IDENTIFIER, G>
 <KEYWORD, timeSig>
-<INTLITERAL, 4>
-<OPERATOR, />
-<INTLITERAL, 4>
+<STRINGLITERAL, "4/4">
 <KEYWORD, keySig>
-<KEYSIG, C Major>
+<KEYSIG, @C Major>
 <KEYWORD, pattern>
 <IDENTIFIER, MainMelody>
 <DELIMITER, {>

@@ -1,16 +1,13 @@
 <KEYWORD, title>
-<STRINGLITERAL, "Nested Patterns Test">
+<STRINGLITERAL, "Error Example">
 <KEYWORD, composer>
-<STRINGLITERAL, "Nested Composer">
-<KEYWORD, staff>
-<IDENTIFIER, Bass>
+<STRINGLITERAL, "Nobody">
 <KEYWORD, clef>
-<IDENTIFIER, F>
+<IDENTIFIER, G>
 <KEYWORD, timeSig>
-<STRINGLITERAL, "3/4">
+<STRINGLITERAL, "5/4">
 <KEYWORD, keySig>
-<IDENTIFIER, D>
-<IDENTIFIER, Minor>
+<KEYSIG, @B# Major>
 <KEYWORD, pattern>
 <IDENTIFIER, Bassline>
 <DELIMITER, {>
@@ -35,9 +32,15 @@
 <KEYWORD, duration>
 <DURATION, quarter>
 <KEYWORD, repeat>
+<INTLITERAL, 3>
 <DELIMITER, {>
 <KEYWORD, pattern>
 <IDENTIFIER, Bassline>
 <DELIMITER, }>
 <DELIMITER, }>
+<IDENTIFIER, final>
+<OPERATOR, =>
+<IDENTIFIER, Bassline>
+<OPERATOR, +>
+<IDENTIFIER, Melody>
 <KEYWORD, end>

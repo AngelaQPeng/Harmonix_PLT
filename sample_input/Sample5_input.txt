@@ -1,10 +1,10 @@
 // Invalid regular expressions
-staff@ Bass
+staff Bass
 clef H
-keySig @H Major // parser should recognize H Major is not a valid KeySig
-note H3 duration half   // parser error Invalid note 'H3'
-title "Unclosed String  // parser error -> title invalid
-timeSig 4 4
+keySig @G Major
+note H3 duration half
+title "Unclosed String  // Lexical Error 
+timeSig 4/4
 pattern Melody {
     note D3 duration sixteenth
 }

@@ -1,13 +1,23 @@
-// Invalid key signature
+// Error Handling key signature
 title "Error Example"
 composer "Nobody"
 clef G
 timeSig "5/4"
-keySig H# Major // identify invalid H# Major in parsing
+keySig B# Major // Should have proper error handling to recognize keySig even without @
+
+pattern Bassline {
+    note D3 duration quarter
+    note F3 duration quarter
+    note A3 duration quarter
+}
 
 pattern Melody {
-    note C4 duration quarter
-    note F4 duration half
+    note F4 duration quarter
+    repeat 3 {
+        pattern Bassline
+    }
 }
+
+final = Bassline + Melody
 
 end

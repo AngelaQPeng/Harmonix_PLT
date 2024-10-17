@@ -1,4 +1,3 @@
-<COMMENT, // Tests basic, valid structure with all lexical grammar rules present>
 <KEYWORD, title>
 <STRINGLITERAL, "Error Example">
 <KEYWORD, composer>
@@ -6,23 +5,42 @@
 <KEYWORD, clef>
 <IDENTIFIER, G>
 <KEYWORD, timeSig>
-<INTLITERAL, 5>
-<DELIMITER, />
-<INTLITERAL, 4>
+<STRINGLITERAL, "5/4">
 <KEYWORD, keySig>
-<IDENTIFIER, H#>
-<IDENTIFIER, Major>
-<COMMENT, // identify invalid H# Major in parsing>
+<KEYSIG, @B# Major>
+<KEYWORD, pattern>
+<IDENTIFIER, Bassline>
+<DELIMITER, {>
+<KEYWORD, note>
+<NOTE, D3>
+<KEYWORD, duration>
+<DURATION, quarter>
+<KEYWORD, note>
+<NOTE, F3>
+<KEYWORD, duration>
+<DURATION, quarter>
+<KEYWORD, note>
+<NOTE, A3>
+<KEYWORD, duration>
+<DURATION, quarter>
+<DELIMITER, }>
 <KEYWORD, pattern>
 <IDENTIFIER, Melody>
 <DELIMITER, {>
 <KEYWORD, note>
-<NOTE, C4>
-<KEYWORD, duration>
-<DURATION, quarter>
-<KEYWORD, note>
 <NOTE, F4>
 <KEYWORD, duration>
-<DURATION, half>
+<DURATION, quarter>
+<KEYWORD, repeat>
+<INTLITERAL, 3>
+<DELIMITER, {>
+<KEYWORD, pattern>
+<IDENTIFIER, Bassline>
 <DELIMITER, }>
+<DELIMITER, }>
+<IDENTIFIER, final>
+<OPERATOR, =>
+<IDENTIFIER, Bassline>
+<OPERATOR, +>
+<IDENTIFIER, Melody>
 <KEYWORD, end>

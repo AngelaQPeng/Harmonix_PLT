@@ -1,24 +1,26 @@
-TokenType.KEYWORD: title
-TokenType.STRINGLITERAL: "Invalid Note and Duration
-TokenType.KEYWORD: composer
-TokenType.STRINGLITERAL: "Test Composer
-TokenType.KEYWORD: staff
-TokenType.IDENTIFIER: Alto
-TokenType.KEYWORD: clef
-TokenType.IDENTIFIER: C
-TokenType.KEYWORD: keySig
-TokenType.IDENTIFIER: G
-TokenType.IDENTIFIER: Major
-TokenType.KEYWORD: pattern
-TokenType.IDENTIFIER: ErrorPattern
-TokenType.DELIMITER: {
-TokenType.KEYWORD: note
-TokenType.IDENTIFIER: H4
-TokenType.KEYWORD: duration
-TokenType.DURATION: quarter
-TokenType.KEYWORD: note
-TokenType.NOTE: F4
-TokenType.KEYWORD: duration
-TokenType.IDENTIFIER: hihihi
-TokenType.DELIMITER: }
-TokenType.KEYWORD: end
+<KEYWORD, title>
+<STRINGLITERAL, "Valid Lexical Pattern">
+<KEYWORD, composer>
+<STRINGLITERAL, "Test Composer">
+<KEYWORD, staff>
+<IDENTIFIER, Alto>
+<KEYWORD, clef>
+<IDENTIFIER, C>
+<KEYWORD, timeSig>
+<STRINGLITERAL, "6/8">
+<KEYWORD, keySig>
+<IDENTIFIER, H>
+<IDENTIFIER, Major>
+<KEYWORD, pattern>
+<IDENTIFIER, validLexicalPattern>
+<DELIMITER, {>
+<KEYWORD, note>
+<IDENTIFIER, H4>
+<KEYWORD, duration>
+<DURATION, quarter>
+<KEYWORD, note>
+<NOTE, F4>
+<KEYWORD, duration>
+<IDENTIFIER, hihihi>
+<DELIMITER, }>
+<KEYWORD, end>

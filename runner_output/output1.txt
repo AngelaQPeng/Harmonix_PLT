@@ -31,6 +31,7 @@
 <DURATION, quarter>
 <DELIMITER, }>
 <KEYWORD, repeat>
+<INTLITERAL, 2>
 <DELIMITER, {>
 <KEYWORD, pattern>
 <IDENTIFIER, MainMelody>
