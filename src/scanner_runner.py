@@ -1,7 +1,16 @@
+import argparse
 import sys
 from scanner import Scanner
 
-def main(input_file, output_file):
+def main():
+    parser = argparse.ArgumentParser(description="Run the scanner on input files.")
+    parser.add_argument("input_file", help="Input file to scan")
+    parser.add_argument("output_file", help="File to write output tokens")
+
+    args = parser.parse_args()
+    input_file = args.input_file
+    output_file = args.output_file
+
     # read the input txt file
     with open(input_file, 'r') as file:
         source_code = file.read()
@@ -17,11 +26,7 @@ def main(input_file, output_file):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python scanner_executable.py <input_file> <output_file>")
-        sys.exit(1)
+    main()
 
-    input_file = sys.argv[1]
-    output_file = sys.argv[2]
 
-    main(input_file, output_file)
+

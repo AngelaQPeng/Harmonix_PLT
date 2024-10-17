@@ -4,7 +4,7 @@ We are creating a language for encoding musical notations into codes, which woul
 ## Team Members
 Angela Peng (ap4636), Haoyuan Lu (hl3812)
 
-# Lexical Grammar Definition
+## Lexical Grammar Definition
 
 ### Keywords
 - Token type: KEYWORD
@@ -116,3 +116,22 @@ Angela Peng (ap4636), Haoyuan Lu (hl3812)
 ```
 \s+
 ```
+
+## Set Up Project Locally
+### Build Docker Image
+To build the Docker image, navigate to the project root directory where the `Dockerfile` is located and run the following command:
+```bash
+docker build -t python-scanner .
+```
+
+### Run Docker Image
+Once the Docker image is built,  run the container with the following command:
+```bash
+docker run -v $(pwd)/sample_input:/Harmonix/sample_input -v $(pwd)/runner_output:/Harmonix/runner_output python-scanner /Harmonix/sample_input/Sample1_input.txt /Harmonix/runner_output/output.txt
+```
+
+Sample1_input.txt can be replaced with any file located in the $(pwd)/sample_input directory.
+
+### Retrieve Output
+After running the command,the tokenized output will be written to runner_output/output.txt
+
