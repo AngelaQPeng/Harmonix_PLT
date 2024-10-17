@@ -1,0 +1,13 @@
+title "Invalid Note and Duration"
+composer "Test Composer"
+staff Alto
+clef C
+timeSig 6/8
+keySig G Major
+
+pattern ErrorPattern {
+    note H4 duration quarter    // Parser should handle H4 as invalid note
+    note F4 duration hihihi     // Parser should handle hihihi as invalid duration
+}
+
+end

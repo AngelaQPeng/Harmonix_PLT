@@ -1,0 +1,13 @@
+// Invalid key signature
+title "Error Example"
+composer "Nobody"
+clef G
+timeSig 5/4
+keySig H# Major
+
+pattern Melody {
+    note C4 duration quarter
+    note F4 duration half
+}
+
+end

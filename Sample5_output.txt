@@ -1,0 +1,33 @@
+<COMMENT, // Invalid regular expressions>
+ERROR: Invalid '@'.
+<IDENTIFIER, Bass>
+<KEYWORD, clef>
+<IDENTIFIER, H>
+<KEYWORD, keySig>
+<IDENTIFIER, H>
+<IDENTIFIER, Major>
+<COMMENT, // parser should recognize H Major is not a valid KeySig>
+<KEYWORD, note>
+<IDENTIFIER, H3>
+<COMMENT, // parser error Invalid note 'H3'>
+<KEYWORD, duration>
+<DURATION, half>
+<KEYWORD, title>
+ERROR, Unclosed string literal.
+<IDENTIFIER, String>
+<COMMENT, // parser error -> title invalid>
+<KEYWORD, timeSig>
+<INTLITERAL, 4>
+<INTLITERAL, 4>
+<KEYWORD, pattern>
+<IDENTIFIER, Melody>
+<DELIMITER, {>
+<KEYWORD, note>
+<NOTE, D3>
+<KEYWORD, duration>
+<DURATION, sixteenth>
+<DELIMITER, }>
+<KEYWORD, repeat>
+<INTLITERAL, 2>
+<KEYWORD, pattern>
+<IDENTIFIER, Melody>

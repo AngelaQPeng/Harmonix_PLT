@@ -1,0 +1,20 @@
+// Tests basic, valid structure with all lexical grammar rules present
+title "Simple Melody"
+composer "Angela Peng"
+staff Treble
+clef G
+timeSig 4/4
+keySig C Major
+
+pattern MainMelody {
+    note C4 duration quarter
+    note E4 duration quarter
+    note G4 duration quarter
+    note C5 duration quarter
+}
+
+repeat 2 {
+    pattern MainMelody
+}
+
+end

@@ -27,8 +27,26 @@ Angela Peng (ap4636), Haoyuan Lu (hl3812)
 - `title`: Sets the title of the composition.
 - `composer`: Sets the composer of the piece.
 
+### Key Signatures
+- Token type: KEYSIG
+- Description: Represents a musical key signature
+- Examples: `C Major`, `C# Minor`
+- Regular Expression: 
+```
+[A-G][#b]? (Major|Minor)
+```
+
 ### Notes
 - Token type: NOTE
+- Description: Musical notes, ranging from pitch (A-G) and octave number (1-7), optionally with sharp # or flat b.
+- Examples: `C6`, `D#6`
+- Regular Expression: 
+```
+([A-G][#b]?)([1-7])
+```
+
+### CLEF
+- Token type: CLEF
 - Description: Musical notes, ranging from pitch (A-G) and octave number (1-7), optionally with sharp # or flat b.
 - Examples: `C6`, `D#6`
 - Regular Expression: 

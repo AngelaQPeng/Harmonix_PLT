@@ -1,0 +1,27 @@
+<COMMENT, // Tests basic, valid structure with all lexical grammar rules present>
+<KEYWORD, title>
+<STRINGLITERAL, "Error Example">
+<KEYWORD, composer>
+<STRINGLITERAL, "Nobody">
+<KEYWORD, clef>
+<IDENTIFIER, G>
+<KEYWORD, timeSig>
+<INTLITERAL, 5>
+<DELIMITER, />
+<INTLITERAL, 4>
+<KEYWORD, keySig>
+<IDENTIFIER, H#>
+<IDENTIFIER, Major>
+<KEYWORD, pattern>
+<IDENTIFIER, Melody>
+<DELIMITER, {>
+<KEYWORD, note>
+<NOTE, C4>
+<KEYWORD, duration>
+<DURATION, quarter>
+<KEYWORD, note>
+<NOTE, F4>
+<KEYWORD, duration>
+<DURATION, half>
+<DELIMITER, }>
+<KEYWORD, end>

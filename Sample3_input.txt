@@ -1,0 +1,22 @@
+// Test nested patterns and repeat instructions
+title "Nested Patterns Test"
+composer "Nested Composer"
+staff Bass
+clef F
+timeSig 3/4
+keySig D Minor
+
+pattern Bassline {
+    note D3 duration quarter
+    note F3 duration quarter
+    note A3 duration quarter
+}
+
+pattern Melody {
+    note F4 duration quarter
+    repeat 3 {
+        pattern Bassline
+    }
+}
+
+end
