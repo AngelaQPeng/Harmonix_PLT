@@ -172,18 +172,22 @@ Sample input 1 is a simple programs that can be correctly tokenized by Harmonix.
 Sample input 2 is provided to showcase Harmonix's error handling ability. 
 When the '@' is missing from the beginning of the key signature, Harmonix
 is still able to classify it as key signature, throw a warning and 
-continue to scan.
+continue to scan. It also contains most of the token classes that can be handled by Harmonix.
 
 ### Sample Input 3
 Sample input 3 provides an example of key signature syntax error that cannot be
 auto-corrected, where 'H Minor' is not a correct key signature token, as it has 
-to start with letters 'A-G'. So, a syntax error will be raise.
+to start with letters 'A-G'. So, a lexical error will be raise.
 
 ### Sample Input 4
+Sample input 4 provides an example program with correct lexical patterns but contain elements that will result 
+in semantic errors during parsing. However, since the focus is currently on lexical analysis, our scanner should correctly tokenize the input and treat all elements as valid lexemes, even when they may not be semantically valid.
+1. `keySig` should be followed by a valid `KEYSIG`; however, `H Major` is not a valid `KEYSIG`, but it could be tokenized as an `IDENTIFIER` during lexical analysis. 
+2. `note` should be followed by a valid `NOTE`, but  since `H4` does not satisfy the rules for a `NOTE` (it does not start with a letter between `'A-G'`), it can be tokenized as an `IDENTIFIER` during lexical analysis.
+3. `duration` should be followed by a valid `DURATION` but `hihihi` is not a valid `DURATION`. It can be tokenized as an `IDENTIFIER` during lexical analysis.
 
 ### Sample Input 5
-Sample input 5 provides an common syntax error - unclosed quotation mark. So,
-a synxtax error will be raise.
+Sample input 5 provides an common syntax error - unclosed quotation mark. So, a lexical error will be raise.
 
 ## Program Overview
 - /src/token.py:
