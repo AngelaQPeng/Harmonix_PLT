@@ -14,9 +14,7 @@ class Scanner:
 
     def scan(self):
         while self.current_pos < len(self.source_code):
-            
             char = self.source_code[self.current_pos]
-            print(char)
             if char.isspace():
                 self.current_pos += 1
             elif char == '"':

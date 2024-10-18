@@ -4,6 +4,9 @@ We are creating a language for encoding musical notations into codes, which woul
 ## Team Members
 Angela Peng (ap4636), Haoyuan Lu (hl3812)
 
+## Dependency
+- Docker: To run the Harmonix Scanner locally, [Docker](https://www.docker.com/) is required.
+
 ## Lexical Grammar Definition
 
 ### Keywords
@@ -138,11 +141,66 @@ docker build -t python-scanner .
 ### Run Docker Image
 Once the Docker image is built,  run the container with the following command:
 ```bash
-docker run -v $(pwd)/sample_input:/Harmonix/sample_input -v $(pwd)/runner_output:/Harmonix/runner_output python-scanner /Harmonix/sample_input/Sample1_input.txt /Harmonix/runner_output/output.txt
+# 'input.txt' needs to be replaced by actual file name 
+docker run -v $(pwd)/sample_input:/Harmonix/sample_input -v $(pwd)/runner_output:/Harmonix/runner_output python-scanner /Harmonix/sample_input/input.txt /Harmonix/runner_output/output.txt
 ```
 
-Sample1_input.txt can be replaced with any file located in the $(pwd)/sample_input directory.
+Similarly, all the five sample_input can be executed by running the following command:
+```bash
+# Running Sample Input 1
+docker run -v $(pwd)/sample_input:/Harmonix/sample_input -v $(pwd)/runner_output:/Harmonix/runner_output python-scanner /Harmonix/sample_input/Sample1_input.txt /Harmonix/runner_output/output1.txt
+# Running Sample Input 2
+docker run -v $(pwd)/sample_input:/Harmonix/sample_input -v $(pwd)/runner_output:/Harmonix/runner_output python-scanner /Harmonix/sample_input/Sample2_input.txt /Harmonix/runner_output/output2.txt
+# Running Sample Input 3
+docker run -v $(pwd)/sample_input:/Harmonix/sample_input -v $(pwd)/runner_output:/Harmonix/runner_output python-scanner /Harmonix/sample_input/Sample3_input.txt /Harmonix/runner_output/output3.txt
+# Running Sample Input 4
+docker run -v $(pwd)/sample_input:/Harmonix/sample_input -v $(pwd)/runner_output:/Harmonix/runner_output python-scanner /Harmonix/sample_input/Sample4_input.txt /Harmonix/runner_output/output4.txt
+# Running Sample Input 5
+docker run -v $(pwd)/sample_input:/Harmonix/sample_input -v $(pwd)/runner_output:/Harmonix/runner_output python-scanner /Harmonix/sample_input/Sample5_input.txt /Harmonix/runner_output/output5.txt
+```
+
+input.txt can be replaced with any file located in the $/Harmonix_PLT/sample_input directory.
 
 ### Retrieve Output
 After running the command,the tokenized output will be written to runner_output/output.txt
+
+## Sample Inputs & Outputs
+### Sample Input 1
+Sample input 1 is a simple programs that can be correctly tokenized by Harmonix.
+
+### Sample Input 2
+Sample input 2 is provided to showcase Harmonix's error handling ability. 
+When the '@' is missing from the beginning of the key signature, Harmonix
+is still able to classify it as key signature, throw a warning and 
+continue to scan.
+
+### Sample Input 3
+Sample input 3 provides an example of key signature syntax error that cannot be
+auto-corrected, where 'H Minor' is not a correct key signature token, as it has 
+to start with letters 'A-G'. So, a syntax error will be raise.
+
+### Sample Input 4
+
+### Sample Input 5
+Sample input 5 provides an common syntax error - unclosed quotation mark. So,
+a synxtax error will be raise.
+
+## Program Overview
+- /src/token.py:
+  - Defines the token types and token class itself
+  
+- /src/scanner.py: 
+  - a lexical scanner that processes music notations codes and tokenizes it.
+  - It can recognize 10 token types, including keywords, notes, durations, key signatures, operators, string literals, and more.
+  - The lexer scans in a character by character manner, and works on the basis of DFA as discussed in class.
+  - The program handles special cases like missing symbols (missing @ 
+  in key signatures) by issuing warnings while continuing to scan. 
+  - It is built to classify musical notation elements (like clefs, key signatures, and notes) 
+  alongside general programming constructs (operators, comments, etc.).
+  - It will raise lexical errors when needed.
+
+- /src/scanner_runner.py:
+  - Combines command line argument parser and allows file I/O operations
+  - Works as the executable for Harmonix Scanner.
+
 
