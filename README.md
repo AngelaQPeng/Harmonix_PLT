@@ -195,7 +195,7 @@ Sample input 5 provides an common syntax error - unclosed quotation mark. So, a 
   
 - /src/scanner.py: 
   - a lexical scanner that processes music notations codes and tokenizes it.
-  - It can recognize 10 token types, including keywords, notes, durations, key signatures, operators, string literals, and more.
+  - It can recognize 11 token types, including keywords, notes, durations, key signatures, operators, string literals, and more.
   - The lexer scans in a character by character manner, and works on the basis of DFA as discussed in class.
   - The program handles special cases like missing symbols (missing @ 
   in key signatures) by issuing warnings while continuing to scan. 
