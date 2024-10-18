@@ -4,6 +4,9 @@ We are creating a language for encoding musical notations into codes, which woul
 ## Team Members
 Angela Peng (ap4636), Haoyuan Lu (hl3812)
 
+## Dependency
+- Docker: To run the Harmonix Scanner locally, [Docker](https://www.docker.com/) is required.
+
 ## Lexical Grammar Definition
 
 ### Keywords
