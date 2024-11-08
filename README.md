@@ -164,7 +164,7 @@ input.txt can be replaced with any file located in the $/Harmonix_PLT/sample_inp
 ### Retrieve Output
 After running the command,the tokenized output will be written to runner_output/output.txt
 
-## Sample Inputs & Outputs
+## Sample Inputs & Outputs - Lexical Analysis
 ### Sample Input 1
 Sample input 1 is a simple programs that can be correctly tokenized by Harmonix.
 
@@ -189,7 +189,7 @@ in semantic errors during parsing. However, since the focus is currently on lexi
 ### Sample Input 5
 Sample input 5 provides an common syntax error - unclosed quotation mark. So, a lexical error will be raise.
 
-## Program Overview
+## Program Overview - Lexical Analysis
 - /src/token.py:
   - Defines the token types and token class itself
   
@@ -207,4 +207,49 @@ Sample input 5 provides an common syntax error - unclosed quotation mark. So, a 
   - Combines command line argument parser and allows file I/O operations
   - Works as the executable for Harmonix Scanner.
 
+## Parser
+```
+<program> ::= <statement_list> "end"
 
+<statement_list> ::= <statement> | <statement> <statement_list>
+
+<statement> ::= <title_statement> 
+              | <composer_statement> 
+              | <staff_statement> 
+              | <clef_statement> 
+              | <time_sig_statement> 
+              | <key_sig_statement> 
+              | <pattern_definition> 
+              | <assignment_statement>
+
+<title_statement> ::= "title" STRINGLITERAL
+
+<composer_statement> ::= "composer" STRINGLITERAL
+
+<staff_statement> ::= "staff" IDENTIFIER
+
+<clef_statement> ::= "clef" IDENTIFIER
+
+<time_sig_statement> ::= "timeSig" STRINGLITERAL
+
+<key_sig_statement> ::= "keySig" KEYSIG
+
+<pattern_definition> ::= "pattern" IDENTIFIER "{" <pattern_body> "}"
+
+<pattern_body> ::= <note_sequence> | <note_sequence> <pattern_body>
+
+<note_sequence> ::= <note_statement> 
+                  | <repeat_statement> 
+                  | <pattern_definition>
+
+<note_statement> ::= "note" NOTE "duration" DURATION
+
+<repeat_statement> ::= "repeat" INTLITERAL "{" <pattern_body> "}"
+
+<assignment_statement> ::= IDENTIFIER ":=" <expression>
+
+<expression> ::= <term> | <term> "+" <expression>
+
+<term> ::= IDENTIFIER
+
+```
