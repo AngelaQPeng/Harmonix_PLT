@@ -54,8 +54,47 @@ class Parser:
     def parse_pattern_definition(self):
         pass
 
-    def parse_assignment_statement(self):
+    def parse_pattern_body(self):
         pass
+
+    def parse_note_sequence(self):
+        pass
+
+    def parse_note_statement(self):
+        pass
+
+    def parse_repeat_statement(self):
+        pass
+
+    def parse_assignment_statement(self):
+        name = self.consume("IDENTIFIER").value
+        self.consume("OPERATOR", ":=")
+        expression = self.parse_expression()
+        return {"type": "assignment_statement", "name": name, "expression": expression}
+
+    def parse_expression(self):
+        term = self.parse_term()
+        if self.peek("OPERATOR", "+"):
+            self.consume("OPERATOR", "+")
+            right_expression = self.parse_expression()
+            return {
+                "type": "addition_expression",
+                "operator": "+",
+                "left": term,
+                "right": right_expression
+            }
+        else:
+            return term
+
+    def parse_term(self):
+        if self.check("IDENTIFIER"):
+            return {"type": "identifier", "name": self.consume("IDENTIFIER").value}
+        elif self.check("KEYWORD", "pattern"):
+            return self.parse_pattern_definition()
+        elif self.check("KEYWORD", "repeat"):
+            return self.parse_repeat_statement()
+        else:
+            self.raise_error("Expected a pattern, repeat, or identifier in expression")
 
     def advance(self):
         """Advance to the next token in the token list."""
