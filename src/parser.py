@@ -9,24 +9,24 @@ class Parser:
         """Parse the entire program"""
         self.ast["type"] = "program"
         self.ast["statements"] = list()
-        while not self.match("KEYWORD", "end"):
+        while not self.check("KEYWORD", "end"):
             self.ast["statements"].append(self.parse_statement())
 
     def parse_statement(self):
         """Parse a statement according to the type of the current token."""
-        if self.match("KEYWORD", "title"):
+        if self.check("KEYWORD", "title"):
             return self.parse_title_statement()
-        elif self.match("KEYWORD", "composer"):
+        elif self.check("KEYWORD", "composer"):
             return self.parse_composer_statement()
-        elif self.match("KEYWORD", "staff"):
+        elif self.check("KEYWORD", "staff"):
             return self.parse_staff_statement()
-        elif self.match("KEYWORD", "clef"):
+        elif self.check("KEYWORD", "clef"):
             return self.parse_clef_statement()
-        elif self.match("KEYWORD", "timeSig"):
+        elif self.check("KEYWORD", "timeSig"):
             return self.parse_time_sig_statement()
-        elif self.match("KEYWORD", "keySig"):
+        elif self.check("KEYWORD", "keySig"):
             return self.parse_key_sig_statement()
-        elif self.match("KEYWORD", "pattern"):
+        elif self.check("KEYWORD", "pattern"):
             return self.parse_pattern_definition()
         elif self.check("IDENTIFIER") and self.peek("OPERATOR", ":="):
             return self.parse_assignment_statement()
@@ -78,11 +78,11 @@ class Parser:
         return body
 
     def parse_note_sequence(self):
-        if self.match("KEYWORD", "note"):
+        if self.check("KEYWORD", "note"):
             return self.parse_note_statement()
-        elif self.match("KEYWORD", "repeat"):
+        elif self.check("KEYWORD", "repeat"):
             return self.parse_repeat_statement()
-        elif self.match("KEYWORD", "pattern"):
+        elif self.check("KEYWORD", "pattern"):
             return self.parse_pattern_definition()
         else:
             self.raise_error("Unexpected token in note sequence")
@@ -142,8 +142,8 @@ class Parser:
 
     def check(self, expected_type, expected_value=None):
         """Check if the current token matches the expected token's type and value."""
-        return (self.current_token and self.current_token[0] == expected_type and
-                (expected_value is None or self.current_token[1] == expected_value))
+        return (self.current_token and self.current_token.type == expected_type and
+                (expected_value is None or self.current_token.value == expected_value))
 
     def consume(self, expected_type, expected_value=None):
         """Consume a token if it matches the expected token."""
@@ -153,13 +153,6 @@ class Parser:
             return token
         else:
             self.raise_error(f"Expected {expected_type} {expected_value if expected_value else ''}")
-
-    def match(self, expected_type, expected_value=None):
-        """Advance if the current token matches the expected token."""
-        if self.check(expected_type, expected_value):
-            self.advance()
-            return True
-        return False
 
     def peek(self, expected_type, expected_value=None):
         """Look ahead to check if the next token matches the token."""
