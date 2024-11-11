@@ -28,6 +28,8 @@ class Parser:
             return self.parse_key_sig_statement()
         elif self.check("KEYWORD", "pattern"):
             return self.parse_pattern_definition()
+        elif self.check("KEYWORD", "repeat"):
+            return self.parse_repeat_statement()
         elif self.check("IDENTIFIER") and self.peek("OPERATOR", ":="):
             return self.parse_assignment_statement()
         else:
@@ -72,18 +74,27 @@ class Parser:
         return {"type": "pattern_definition", "name": pattern_name, "body": pattern_body}
 
     def parse_pattern_body(self):
-        body = []
-        while not self.check("DELIMITER", "}"):
-            body.append(self.parse_note_sequence())
+        # Initialize the body with the first note_sequence
+        body = [self.parse_note_sequence()]
+        # Parse any additional note sequences in pattern_body_tail
+        while self.check("KEYWORD", "note") or self.check("KEYWORD", "repeat") or self.check("IDENTIFIER"):
+            body.extend(self.parse_pattern_body_tail())
         return body
+
+    def parse_pattern_body_tail(self):
+        tail = []
+        # Add additional note sequences as part of pattern_body_tail
+        while self.check("KEYWORD", "note") or self.check("KEYWORD", "repeat") or self.check("IDENTIFIER"):
+            tail.append(self.parse_note_sequence())
+        return tail
 
     def parse_note_sequence(self):
         if self.check("KEYWORD", "note"):
             return self.parse_note_statement()
         elif self.check("KEYWORD", "repeat"):
             return self.parse_repeat_statement()
-        elif self.check("KEYWORD", "pattern"):
-            return self.parse_pattern_definition()
+        elif self.check("IDENTIFIER"):
+            return {"type": "pattern_reference", "name": self.consume("IDENTIFIER").value}
         else:
             self.raise_error("Unexpected token in note sequence")
 
@@ -110,27 +121,38 @@ class Parser:
 
     def parse_expression(self):
         term = self.parse_term()
-        if self.peek("OPERATOR", "+"):
-            self.consume("OPERATOR", "+")
-            right_expression = self.parse_expression()
+        # Check if we have more terms to add for an expression_prime
+        if self.check("OPERATOR", "+"):
+            return self.parse_expression_prime(term)
+        else:
+            return term
+
+    def parse_expression_prime(self, left):
+        self.consume("OPERATOR", "+")
+        right = self.parse_term()
+        # Recursively handle additional "+" operations by calling parse_expression_prime
+        if self.check("OPERATOR", "+"):
             return {
                 "type": "addition_expression",
                 "operator": "+",
-                "left": term,
-                "right": right_expression
+                "left": left,
+                "right": self.parse_expression_prime(right)
             }
         else:
-            return term
+            return {
+                "type": "addition_expression",
+                "operator": "+",
+                "left": left,
+                "right": right
+            }
 
     def parse_term(self):
         if self.check("IDENTIFIER"):
             return {"type": "identifier", "name": self.consume("IDENTIFIER").value}
-        elif self.check("KEYWORD", "pattern"):
-            return self.parse_pattern_definition()
         elif self.check("KEYWORD", "repeat"):
             return self.parse_repeat_statement()
         else:
-            self.raise_error("Expected a pattern, repeat, or identifier in expression")
+            self.raise_error("Expected an identifier in term")
 
     def advance(self):
         """Advance to the next token in the token list."""

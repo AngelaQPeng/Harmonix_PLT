@@ -1,3 +1,4 @@
+import json
 import sys
 import re
 from parser import Parser
@@ -33,13 +34,14 @@ def main(input_file, output_file):
     parser = Parser(tokens)
 
     try:
-        ast = parser.parse_program()
+        parser.parse_program()
+        ast = parser.ast
     except Exception as e:
         print(f"Parser error: {e}")
         sys.exit(1)
 
-    with open(output_file, 'w') as file:
-        file.write(str(ast))
+    with open(output_file, "w") as file:
+        json.dump(ast, file, indent=4)
 
     print(f"Parsing complete. AST written to {output_file}")
 

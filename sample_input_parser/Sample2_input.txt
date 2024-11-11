@@ -30,9 +30,13 @@
 <KEYWORD, duration>
 <DURATION, quarter>
 <DELIMITER, }>
+<IDENTIFIER, a>
+<OPERATOR, :=>
 <KEYWORD, repeat>
 <INTLITERAL, 2>
 <DELIMITER, {>
 <IDENTIFIER, MainMelody>
 <DELIMITER, }>
+<OPERATOR, +>
+<IDENTIFIER, MainMelody>
 <KEYWORD, end>
