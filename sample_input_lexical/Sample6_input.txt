@@ -1,0 +1,28 @@
+title "Symphony No. 9"
+composer "Ludwig van Beethoven"
+staff Bass
+clef F
+timeSig "3/4"
+keySig D Minor
+
+pattern MainTheme {
+    note D4 duration half
+    note F4 duration quarter
+    note A4 duration quarter
+    repeat 3 {
+        note D4 duration eighth
+        note F4 duration eighth
+    }
+}
+
+pattern Bridge {
+    note G4 duration quarter
+    note B4 duration quarter
+    repeat 2 {
+        MainTheme
+    }
+}
+
+fullPiece := MainTheme + Bridge + MainTheme
+
+end

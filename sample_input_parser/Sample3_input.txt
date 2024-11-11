@@ -35,4 +35,3 @@
 <DELIMITER, {>
 <IDENTIFIER, MainMelody>
 <DELIMITER, }>
-<KEYWORD, end>

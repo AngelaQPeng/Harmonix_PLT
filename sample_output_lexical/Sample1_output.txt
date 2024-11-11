@@ -33,7 +33,6 @@
 <KEYWORD, repeat>
 <INTLITERAL, 2>
 <DELIMITER, {>
-<KEYWORD, pattern>
 <IDENTIFIER, MainMelody>
 <DELIMITER, }>
 <KEYWORD, end>

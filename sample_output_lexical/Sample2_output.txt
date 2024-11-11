@@ -34,12 +34,11 @@
 <KEYWORD, repeat>
 <INTLITERAL, 3>
 <DELIMITER, {>
-<KEYWORD, pattern>
 <IDENTIFIER, Bassline>
 <DELIMITER, }>
 <DELIMITER, }>
 <IDENTIFIER, final>
-<OPERATOR, =>
+<OPERATOR, :=>
 <IDENTIFIER, Bassline>
 <OPERATOR, +>
 <IDENTIFIER, Melody>
