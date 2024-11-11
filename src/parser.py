@@ -10,6 +10,8 @@ class Parser:
         self.ast["type"] = "program"
         self.ast["statements"] = list()
         while not self.check("KEYWORD", "end"):
+            if self.index == len(self.tokens):
+                self.raise_error("Missing END keyword in the end of the program")
             self.ast["statements"].append(self.parse_statement())
 
     def parse_statement(self):
