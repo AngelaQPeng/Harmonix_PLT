@@ -1,39 +1,45 @@
 <KEYWORD, title>
-<STRINGLITERAL, "Simple Melody">
+<STRINGLITERAL, "Error Example">
 <KEYWORD, composer>
-<STRINGLITERAL, "Angela Peng">
-<KEYWORD, staff>
-<IDENTIFIER, Treble>
+<STRINGLITERAL, "Nobody">
 <KEYWORD, clef>
 <IDENTIFIER, G>
 <KEYWORD, timeSig>
-<STRINGLITERAL, "4/4">
+<STRINGLITERAL, "5/4">
 <KEYWORD, keySig>
-<KEYSIG, @C Major>
+<KEYSIG, @B# Major>
 <KEYWORD, pattern>
-<IDENTIFIER, MainMelody>
+<IDENTIFIER, Bassline>
 <DELIMITER, {>
 <KEYWORD, note>
-<NOTE, C4>
+<NOTE, D3>
 <KEYWORD, duration>
 <DURATION, quarter>
 <KEYWORD, note>
-<NOTE, E4>
+<NOTE, F3>
 <KEYWORD, duration>
 <DURATION, quarter>
 <KEYWORD, note>
-<NOTE, G4>
-<KEYWORD, duration>
-<DURATION, quarter>
-<KEYWORD, note>
-<NOTE, C5>
+<NOTE, A3>
 <KEYWORD, duration>
 <DURATION, quarter>
 <DELIMITER, }>
+<KEYWORD, pattern>
+<IDENTIFIER, Melody>
+<DELIMITER, {>
+<KEYWORD, note>
+<NOTE, F4>
+<KEYWORD, duration>
+<DURATION, quarter>
 <KEYWORD, repeat>
-<INTLITERAL, 2>
+<INTLITERAL, 3>
 <DELIMITER, {>
-<KEYWORD, pattern>
-<IDENTIFIER, MainMelody>
+<IDENTIFIER, Bassline>
 <DELIMITER, }>
+<DELIMITER, }>
+<IDENTIFIER, final>
+<OPERATOR, :=>
+<IDENTIFIER, Bassline>
+<OPERATOR, +>
+<IDENTIFIER, Melody>
 <KEYWORD, end>

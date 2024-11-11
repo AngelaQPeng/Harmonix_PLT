@@ -1,0 +1,83 @@
+{
+    "type": "program",
+    "statements": [
+        {
+            "type": "title_statement",
+            "title": "Error Example"
+        },
+        {
+            "type": "composer_statement",
+            "composer": "Nobody"
+        },
+        {
+            "type": "clef_statement",
+            "clef": "G"
+        },
+        {
+            "type": "time_sig_statement",
+            "timeSig": "5/4"
+        },
+        {
+            "type": "key_sig_statement",
+            "keySig": "@B# Major"
+        },
+        {
+            "type": "pattern_definition",
+            "name": "Bassline",
+            "body": [
+                {
+                    "type": "note_statement",
+                    "note": "D3",
+                    "duration": "quarter"
+                },
+                {
+                    "type": "note_statement",
+                    "note": "F3",
+                    "duration": "quarter"
+                },
+                {
+                    "type": "note_statement",
+                    "note": "A3",
+                    "duration": "quarter"
+                }
+            ]
+        },
+        {
+            "type": "pattern_definition",
+            "name": "Melody",
+            "body": [
+                {
+                    "type": "note_statement",
+                    "note": "F4",
+                    "duration": "quarter"
+                },
+                {
+                    "type": "repeat_statement",
+                    "count": 3,
+                    "body": [
+                        {
+                            "type": "pattern_reference",
+                            "name": "Bassline"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "assignment_statement",
+            "name": "final",
+            "expression": {
+                "type": "addition_expression",
+                "operator": "+",
+                "left": {
+                    "type": "identifier",
+                    "name": "Bassline"
+                },
+                "right": {
+                    "type": "identifier",
+                    "name": "Melody"
+                }
+            }
+        }
+    ]
+}

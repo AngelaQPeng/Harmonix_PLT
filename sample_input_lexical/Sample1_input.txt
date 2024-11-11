@@ -14,7 +14,7 @@ pattern MainMelody {
 }
 
 repeat 2 {
-    pattern MainMelody
+    MainMelody
 }
 
 end

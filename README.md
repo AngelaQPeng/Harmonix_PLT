@@ -220,6 +220,7 @@ Sample input 5 provides an common syntax error - unclosed quotation mark. So, a 
               | <time_sig_statement> 
               | <key_sig_statement> 
               | <pattern_definition> 
+              | <repeat_statement> 
               | <assignment_statement>
 
 <title_statement> ::= "title" STRINGLITERAL
@@ -236,11 +237,13 @@ Sample input 5 provides an common syntax error - unclosed quotation mark. So, a 
 
 <pattern_definition> ::= "pattern" IDENTIFIER "{" <pattern_body> "}"
 
-<pattern_body> ::= <note_sequence> | <note_sequence> <pattern_body>
+<pattern_body> ::= <note_sequence> <pattern_body_tail>
+
+<pattern_body_tail> ::= <note_sequence> <pattern_body_tail> | ε
 
 <note_sequence> ::= <note_statement> 
                   | <repeat_statement> 
-                  | <pattern_definition>
+                  | IDENTIFIER
 
 <note_statement> ::= "note" NOTE "duration" DURATION
 
@@ -248,8 +251,11 @@ Sample input 5 provides an common syntax error - unclosed quotation mark. So, a 
 
 <assignment_statement> ::= IDENTIFIER ":=" <expression>
 
-<expression> ::= <term> | <term> "+" <expression>
+<expression> ::= <term> <expression_prime>
 
-<term> ::= IDENTIFIER
+<expression_prime> ::= "+" <term> <expression_prime> | ε
+
+<term> ::= IDENTIFIER | <repeat_statement>
+
 
 ```
