@@ -34,37 +34,73 @@ class Parser:
             self.raise_error("Unexpected token in statement")
 
     def parse_title_statement(self):
-        pass
+        self.consume("KEYWORD", "title")
+        title = self.consume("STRINGLITERAL").value
+        return {"type": "title_statement", "title": title}
 
     def parse_composer_statement(self):
-        pass
+        self.consume("KEYWORD", "composer")
+        composer = self.consume("STRINGLITERAL").value
+        return {"type": "composer_statement", "composer": composer}
 
     def parse_staff_statement(self):
-        pass
+        self.consume("KEYWORD", "staff")
+        staff = self.consume("IDENTIFIER").value
+        return {"type": "staff_statement", "staff": staff}
 
     def parse_clef_statement(self):
-        pass
+        self.consume("KEYWORD", "clef")
+        clef = self.consume("IDENTIFIER").value
+        return {"type": "clef_statement", "clef": clef}
 
     def parse_time_sig_statement(self):
-        pass
+        self.consume("KEYWORD", "timeSig")
+        time_sig = self.consume("STRINGLITERAL").value
+        return {"type": "time_sig_statement", "timeSig": time_sig}
 
     def parse_key_sig_statement(self):
-        pass
+        self.consume("KEYWORD", "keySig")
+        key_sig = self.consume("KEYSIG").value
+        return {"type": "key_sig_statement", "keySig": key_sig}
 
     def parse_pattern_definition(self):
-        pass
+        self.consume("KEYWORD", "pattern")
+        pattern_name = self.consume("IDENTIFIER").value
+        self.consume("DELIMITER", "{")
+        pattern_body = self.parse_pattern_body()
+        self.consume("DELIMITER", "}")
+        return {"type": "pattern_definition", "name": pattern_name, "body": pattern_body}
 
     def parse_pattern_body(self):
-        pass
+        body = []
+        while not self.check("DELIMITER", "}"):
+            body.append(self.parse_note_sequence())
+        return body
 
     def parse_note_sequence(self):
-        pass
+        if self.match("KEYWORD", "note"):
+            return self.parse_note_statement()
+        elif self.match("KEYWORD", "repeat"):
+            return self.parse_repeat_statement()
+        elif self.match("KEYWORD", "pattern"):
+            return self.parse_pattern_definition()
+        else:
+            self.raise_error("Unexpected token in note sequence")
 
     def parse_note_statement(self):
-        pass
+        self.consume("KEYWORD", "note")
+        note = self.consume("NOTE").value
+        self.consume("KEYWORD", "duration")
+        duration = self.consume("DURATION").value
+        return {"type": "note_statement", "note": note, "duration": duration}
 
     def parse_repeat_statement(self):
-        pass
+        self.consume("KEYWORD", "repeat")
+        count = int(self.consume("INTLITERAL").value)
+        self.consume("DELIMITER", "{")
+        repeat_body = self.parse_pattern_body()
+        self.consume("DELIMITER", "}")
+        return {"type": "repeat_statement", "count": count, "body": repeat_body}
 
     def parse_assignment_statement(self):
         name = self.consume("IDENTIFIER").value
