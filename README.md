@@ -297,3 +297,15 @@ Sample input 5 tests on more comprehensive program with multiple pattern identif
 
 ### Sample Input 6
 Sample input 6 showcases additional error handling capabilities. Specifically, there should be a INTLITERAL after the repeat statement which should be captured by the parser. In the input, we neglected adding an INTLITERAL after the repeat statement, thus, the expected output would be something like "Syntax error: Expected INTLITERAL ... ".
+
+# Video Demonstrations
+
+## Scanner & Parser
+
+https://www.youtube.com/watch?v=rLWjSOUssLg
+
+This video covers the following:
+1. Demonstrate how the input is being parsed by the scanner.
+2. Demonstrate how the scanner output is fed to the parser to generate AST
+
+
