@@ -308,4 +308,3 @@ This video covers the following:
 1. Demonstrate how the input is being parsed by the scanner.
 2. Demonstrate how the scanner output is fed to the parser to generate AST
 
-
