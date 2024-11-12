@@ -327,3 +327,14 @@ python3 src/parser_runner.py sample_input_parser/Sample5_input.txt runner_output
 # Running Sample Input 6
 python3 src/parser_runner.py sample_input_parser/Sample6_input.txt runner_output_parser/output6.txt
 ```
+
+# Video Demonstrations
+
+## Scanner & Parser
+
+https://www.youtube.com/watch?v=rLWjSOUssLg
+
+This video covers the following:
+1. Demonstrate how the input is being parsed by the scanner.
+2. Demonstrate how the scanner output is fed to the parser to generate AST
+
