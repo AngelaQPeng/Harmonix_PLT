@@ -1,0 +1,57 @@
+<KEYWORD, title>
+<STRINGLITERAL, "Syntax Error Example">
+<KEYWORD, composer>
+<STRINGLITERAL, "Unknown Composer">
+<KEYWORD, staff>
+<IDENTIFIER, Soprano>
+<KEYWORD, clef>
+<IDENTIFIER, G>
+<KEYWORD, timeSig>
+<STRINGLITERAL, "4/4">
+<KEYWORD, keySig>
+<KEYSIG, C Major>
+<KEYWORD, pattern>
+<IDENTIFIER, Melody>
+<DELIMITER, {>
+<KEYWORD, note>
+<NOTE, C4>
+<KEYWORD, duration>
+<DURATION, quarter>
+<KEYWORD, note>
+<NOTE, E4>
+<KEYWORD, duration>
+<DURATION, quarter>
+<KEYWORD, repeat>
+<INTLITERAL, 2>
+<DELIMITER, {>
+<KEYWORD, note>
+<NOTE, G4>
+<KEYWORD, duration>
+<DURATION, eighth>
+<DELIMITER, }>
+<DELIMITER, }>
+<KEYWORD, pattern>
+<IDENTIFIER, Harmony>
+<DELIMITER, {>
+<KEYWORD, note>
+<NOTE, G4>
+<KEYWORD, duration>
+<DURATION, half>
+<KEYWORD, note>
+<NOTE, D5>
+<KEYWORD, duration>
+<DURATION, quarter>
+<KEYWORD, repeat>
+<DELIMITER, {>  <!-- Missing INTLITERAL here, triggers syntax error -->
+<IDENTIFIER, Melody>
+<DELIMITER, }>
+<DELIMITER, }>
+<IDENTIFIER, finalSection>
+<OPERATOR, :=>
+<IDENTIFIER, Harmony>
+<OPERATOR, +>
+<KEYWORD, note>
+<NOTE, C5>
+<KEYWORD, duration>
+<DURATION, whole>
+<KEYWORD, end>
