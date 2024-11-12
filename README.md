@@ -5,8 +5,17 @@ We are creating a language for encoding musical notations into codes, which woul
 Angela Peng (ap4636), Haoyuan Lu (hl3812)
 
 ## Dependency
-- Docker: To run the Harmonix Scanner locally, [Docker](https://www.docker.com/) is required.
+- Python 3.12: To run the Harmonix Scanner locally, [Python 3.12](https://www.python.org/downloads/release/python-3120/) is required.
 
+### Clone Repository and Install Dependencies
+
+To get started, first clone this repository and navigate to the project directory:
+
+```bash
+# Clone the repository
+git clone https://github.com/AngelaQPeng/Harmonix_PLT.git
+cd Harmonix_PLT
+```
 
 # Part 1 - Lexical Scanner
 
@@ -177,32 +186,27 @@ in semantic errors during parsing. However, since the focus is currently on lexi
 ### Sample Input 5
 Sample input 5 provides an common syntax error - unclosed quotation mark. So, a lexical error will be raise.
 
-## Installation
-### Build Docker Image
-To build the Docker image, navigate to the project root directory where the `Dockerfile` is located and run the following command:
-```bash
-docker build -t python-scanner .
-```
+## Run Harmonix Scanner
+Once Python 3.12 is installed, you can run the Harmonix Scanner locally with the following command:
 
-### Run Docker Image
-Once the Docker image is built,  run the container with the following command:
 ```bash
-# 'input.txt' needs to be replaced by actual file name 
-docker run -v $(pwd)/sample_input:/Harmonix/sample_input -v $(pwd)/runner_output:/Harmonix/runner_output python-scanner /Harmonix/sample_input/input.txt /Harmonix/runner_output/output.txt
-```
+# 'input.txt' needs to be replaced by the actual file name
+python3 src/scanner_runner.py sample_input/input.txt runner_output/output.txt
 
-Similarly, all the five sample_input can be executed by running the following command:
-```bash
 # Running Sample Input 1
-docker run -v $(pwd)/sample_input:/Harmonix/sample_input -v $(pwd)/runner_output:/Harmonix/runner_output python-scanner /Harmonix/sample_input/Sample1_input.txt /Harmonix/runner_output/output1.txt
+python3 src/scanner_runner.py sample_input_lexical/Sample1_input.txt runner_output_lexical/output1.txt
+
 # Running Sample Input 2
-docker run -v $(pwd)/sample_input:/Harmonix/sample_input -v $(pwd)/runner_output:/Harmonix/runner_output python-scanner /Harmonix/sample_input/Sample2_input.txt /Harmonix/runner_output/output2.txt
+python3 src/scanner_runner.py sample_input_lexical/Sample2_input.txt runner_output_lexical/output2.txt
+
 # Running Sample Input 3
-docker run -v $(pwd)/sample_input:/Harmonix/sample_input -v $(pwd)/runner_output:/Harmonix/runner_output python-scanner /Harmonix/sample_input/Sample3_input.txt /Harmonix/runner_output/output3.txt
+python3 src/scanner_runner.py sample_input_lexical/Sample3_input.txt runner_output_lexical/output3.txt
+
 # Running Sample Input 4
-docker run -v $(pwd)/sample_input:/Harmonix/sample_input -v $(pwd)/runner_output:/Harmonix/runner_output python-scanner /Harmonix/sample_input/Sample4_input.txt /Harmonix/runner_output/output4.txt
+python3 src/scanner_runner.py sample_input_lexical/Sample4_input.txt runner_output_lexical/output4.txt
+
 # Running Sample Input 5
-docker run -v $(pwd)/sample_input:/Harmonix/sample_input -v $(pwd)/runner_output:/Harmonix/runner_output python-scanner /Harmonix/sample_input/Sample5_input.txt /Harmonix/runner_output/output5.txt
+python3 src/scanner_runner.py sample_input_lexical/Sample5_input.txt runner_output_lexical/output5.txt
 ```
 
 input.txt can be replaced with any file located in the $/Harmonix_PLT/sample_input directory.
@@ -297,6 +301,32 @@ Sample input 5 tests on more comprehensive program with multiple pattern identif
 
 ### Sample Input 6
 Sample input 6 showcases additional error handling capabilities. Specifically, there should be a INTLITERAL after the repeat statement which should be captured by the parser. In the input, we neglected adding an INTLITERAL after the repeat statement, thus, the expected output would be something like "Syntax error: Expected INTLITERAL ... ".
+
+## Run Harmonix Parser
+Harmonix Parser can be executed locally with the following command:
+
+```bash
+# 'input.txt' needs to be replaced by the actual file name
+python3 src/parser_runner.py sample_input/input.txt runner_output/output.txt
+
+# Running Sample Input 1
+python3 src/parser_runner.py sample_input_parser/Sample1_input.txt runner_output_parser/output1.txt
+
+# Running Sample Input 2
+python3 src/parser_runner.py sample_input_parser/Sample2_input.txt runner_output_parser/output2.txt
+
+# Running Sample Input 3
+python3 src/parser_runner.py sample_input_parser/Sample3_input.txt runner_output_parser/output3.txt
+
+# Running Sample Input 4
+python3 src/parser_runner.py sample_input_parser/Sample4_input.txt runner_output_parser/output4.txt
+
+# Running Sample Input 5
+python3 src/parser_runner.py sample_input_parser/Sample5_input.txt runner_output_parser/output5.txt
+
+# Running Sample Input 6
+python3 src/parser_runner.py sample_input_parser/Sample6_input.txt runner_output_parser/output6.txt
+```
 
 # Video Demonstrations
 
