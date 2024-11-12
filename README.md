@@ -7,6 +7,27 @@ Angela Peng (ap4636), Haoyuan Lu (hl3812)
 ## Dependency
 - Docker: To run the Harmonix Scanner locally, [Docker](https://www.docker.com/) is required.
 
+
+# Part 1 - Lexical Scanner
+
+## Program Overview - Lexical Analysis
+- /src/token.py:
+  - Defines the token types and token class itself
+  
+- /src/scanner.py: 
+  - a lexical scanner that processes music notations codes and tokenizes it.
+  - It can recognize 11 token types, including keywords, notes, durations, key signatures, operators, string literals, and more.
+  - The lexer scans in a character by character manner, and works on the basis of DFA as discussed in class.
+  - The program handles special cases like missing symbols (missing @ 
+  in key signatures) by issuing warnings while continuing to scan. 
+  - It is built to classify musical notation elements (like clefs, key signatures, and notes) 
+  alongside general programming constructs (operators, comments, etc.).
+  - It will raise lexical errors when needed.
+
+- /src/scanner_runner.py:
+  - Combines command line argument parser and allows file I/O operations
+  - Works as the executable for Harmonix Scanner.
+
 ## Lexical Grammar Definition
 
 ### Keywords
@@ -131,6 +152,31 @@ warnings.warn("Missing '@' symbol in key signature. Assuming '@' and continuing.
 ### Exceptions for Critical Lexical Errors or Invalid Tokens
 We created a function `raise_lexical_error()` to raise exception for critical issues that prevent further scanning or when a valid token cannot be formed. These errors stop the scanning process immediately and raise an exception. Specifically, our sample test 3 and 5 in sample_input contains such errors to raise an exception.
 
+## Sample Inputs & Outputs - Lexical Analysis
+### Sample Input 1
+Sample input 1 is a simple programs that can be correctly tokenized by Harmonix.
+
+### Sample Input 2
+Sample input 2 is provided to showcase Harmonix's error handling ability. 
+When the '@' is missing from the beginning of the key signature, Harmonix
+is still able to classify it as key signature, throw a warning and 
+continue to scan. It also contains most of the token classes that can be handled by Harmonix.
+
+### Sample Input 3
+Sample input 3 provides an example of key signature syntax error that cannot be
+auto-corrected, where 'H Minor' is not a correct key signature token, as it has 
+to start with letters 'A-G'. So, a lexical error will be raise.
+
+### Sample Input 4
+Sample input 4 provides an example program with correct lexical patterns but contain elements that will result 
+in semantic errors during parsing. However, since the focus is currently on lexical analysis, our scanner should correctly tokenize the input and treat all elements as valid lexemes, even when they may not be semantically valid.
+1. `keySig` should be followed by a valid `KEYSIG`; however, `H Major` is not a valid `KEYSIG`, but it could be tokenized as an `IDENTIFIER` during lexical analysis. 
+2. `note` should be followed by a valid `NOTE`, but  since `H4` does not satisfy the rules for a `NOTE` (it does not start with a letter between `'A-G'`), it can be tokenized as an `IDENTIFIER` during lexical analysis.
+3. `duration` should be followed by a valid `DURATION` but `hihihi` is not a valid `DURATION`. It can be tokenized as an `IDENTIFIER` during lexical analysis.
+
+### Sample Input 5
+Sample input 5 provides an common syntax error - unclosed quotation mark. So, a lexical error will be raise.
+
 ## Installation
 ### Build Docker Image
 To build the Docker image, navigate to the project root directory where the `Dockerfile` is located and run the following command:
@@ -164,50 +210,23 @@ input.txt can be replaced with any file located in the $/Harmonix_PLT/sample_inp
 ### Retrieve Output
 After running the command,the tokenized output will be written to runner_output/output.txt
 
-## Sample Inputs & Outputs - Lexical Analysis
-### Sample Input 1
-Sample input 1 is a simple programs that can be correctly tokenized by Harmonix.
+# Part 2 - Parser
 
-### Sample Input 2
-Sample input 2 is provided to showcase Harmonix's error handling ability. 
-When the '@' is missing from the beginning of the key signature, Harmonix
-is still able to classify it as key signature, throw a warning and 
-continue to scan. It also contains most of the token classes that can be handled by Harmonix.
+## Program Overview - Syntactical Analysis
+- /src/parser.py: 
+  - A syntax parser that processes token stream and constructs an Abstract Syntax Tree (AST)
+  - It can recognize hierarchical structures such as program metadata, patterns, notes, durations, repeats, pattern references, nested patterns, and complex expressions involving assignments and arithmetic operations
+    - The program is designed to process nested structures, such as repeated pattern references and combined patterns, enabling complex compositions to be represented accurately in the AST
+  - The parser works on a recursive-descent basis, analyzing each token sequence in relation to predefined CFG rules for the language
+  - It handles syntax errors by raising exceptions when unexpected tokens or structures are encountered, providing informative messages to help identify issues in the input
+  - It can also parse and construct AST nodes for statements like title, composer, clef, time signature, key signature, and nested pattern blocks.
+  - The parser supports arithmetic expressions in the language, allowing patterns to be combined or referenced within assignments.
 
-### Sample Input 3
-Sample input 3 provides an example of key signature syntax error that cannot be
-auto-corrected, where 'H Minor' is not a correct key signature token, as it has 
-to start with letters 'A-G'. So, a lexical error will be raise.
-
-### Sample Input 4
-Sample input 4 provides an example program with correct lexical patterns but contain elements that will result 
-in semantic errors during parsing. However, since the focus is currently on lexical analysis, our scanner should correctly tokenize the input and treat all elements as valid lexemes, even when they may not be semantically valid.
-1. `keySig` should be followed by a valid `KEYSIG`; however, `H Major` is not a valid `KEYSIG`, but it could be tokenized as an `IDENTIFIER` during lexical analysis. 
-2. `note` should be followed by a valid `NOTE`, but  since `H4` does not satisfy the rules for a `NOTE` (it does not start with a letter between `'A-G'`), it can be tokenized as an `IDENTIFIER` during lexical analysis.
-3. `duration` should be followed by a valid `DURATION` but `hihihi` is not a valid `DURATION`. It can be tokenized as an `IDENTIFIER` during lexical analysis.
-
-### Sample Input 5
-Sample input 5 provides an common syntax error - unclosed quotation mark. So, a lexical error will be raise.
-
-## Program Overview - Lexical Analysis
-- /src/token.py:
-  - Defines the token types and token class itself
-  
-- /src/scanner.py: 
-  - a lexical scanner that processes music notations codes and tokenizes it.
-  - It can recognize 11 token types, including keywords, notes, durations, key signatures, operators, string literals, and more.
-  - The lexer scans in a character by character manner, and works on the basis of DFA as discussed in class.
-  - The program handles special cases like missing symbols (missing @ 
-  in key signatures) by issuing warnings while continuing to scan. 
-  - It is built to classify musical notation elements (like clefs, key signatures, and notes) 
-  alongside general programming constructs (operators, comments, etc.).
-  - It will raise lexical errors when needed.
-
-- /src/scanner_runner.py:
+- /src/parser_runner.py:
   - Combines command line argument parser and allows file I/O operations
-  - Works as the executable for Harmonix Scanner.
+  - Works as the executable for Harmonix Parser.
 
-## Parser
+## Context Free Grammar (CFG)
 ```
 <program> ::= <statement_list> "end"
 
@@ -259,3 +278,22 @@ Sample input 5 provides an common syntax error - unclosed quotation mark. So, a 
 
 
 ```
+
+## Sample Inputs & Outputs - Parser
+### Sample Input 1
+Sample input 1 is a simple program that can be correctly parsed by Harmonix.
+
+### Sample Input 2
+Sample input 2 tests on pattern definitions and nested structures within delimiters. It also checks for proper handling of repeat statements with integer counts and pattern references. It also ensures the parser correctly identifies the end of the program with end.
+
+### Sample Input 3
+Sample input 3 tests if parser correctly handles error when there's no end statement. In such case, the parser should raise an error and state "Missing END keyword in the end of the program ...".
+
+### Sample Input 4
+Sample input 4 tests on basic arithmetic operations including assignment operator and addition operator. 
+
+### Sample Input 5
+Sample input 5 tests on more comprehensive program with multiple pattern identifiers, each with one or multiple nested patterns. It also tests for more advanced arithmetic operations.
+
+### Sample Input 6
+Sample input 6 showcases additional error handling capabilities. Specifically, there should be a INTLITERAL after the repeat statement which should be captured by the parser. In the input, we neglected adding an INTLITERAL after the repeat statement, thus, the expected output would be something like "Syntax error: Expected INTLITERAL ... ".

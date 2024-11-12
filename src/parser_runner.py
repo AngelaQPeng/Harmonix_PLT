@@ -15,7 +15,6 @@ def parse_token_line(line):
     lexeme = lexeme.strip('"')
     return token_type, lexeme
 
-
 def main(input_file, output_file):
     tokens = []
     try:
