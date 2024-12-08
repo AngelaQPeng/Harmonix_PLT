@@ -1,0 +1,65 @@
+{
+    "type": "program",
+    "statements": [
+        {
+            "type": "title_statement",
+            "title": "Simple Melody"
+        },
+        {
+            "type": "composer_statement",
+            "composer": "Angela Peng"
+        },
+        {
+            "type": "staff_statement",
+            "staff": "Treble"
+        },
+        {
+            "type": "clef_statement",
+            "clef": "G"
+        },
+        {
+            "type": "time_sig_statement",
+            "timeSig": "4/4"
+        },
+        {
+            "type": "key_sig_statement",
+            "keySig": "@C Major"
+        },
+        {
+            "type": "pattern_definition",
+            "name": "MainMelody",
+            "body": [
+                {
+                    "type": "note_statement",
+                    "note": "C4",
+                    "duration": "quarter"
+                },
+                {
+                    "type": "note_statement",
+                    "note": "E4",
+                    "duration": "quarter"
+                },
+                {
+                    "type": "note_statement",
+                    "note": "G4",
+                    "duration": "quarter"
+                },
+                {
+                    "type": "note_statement",
+                    "note": "C5",
+                    "duration": "quarter"
+                }
+            ]
+        },
+        {
+            "type": "repeat_statement",
+            "count": 2,
+            "body": [
+                {
+                    "type": "pattern_reference",
+                    "name": "MainMelody"
+                }
+            ]
+        }
+    ]
+}
