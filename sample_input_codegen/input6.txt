@@ -1,0 +1,160 @@
+{
+    "type": "program",
+    "statements": [
+        {
+            "type": "title_statement",
+            "title": "Symphony No. 9"
+        },
+        {
+            "type": "composer_statement",
+            "composer": "Ludwig van Beethoven"
+        },
+        {
+            "type": "staff_statement",
+            "staff": "Bass"
+        },
+        {
+            "type": "clef_statement",
+            "clef": "F"
+        },
+        {
+            "type": "time_sig_statement",
+            "timeSig": "3/4"
+        },
+        {
+            "type": "key_sig_statement",
+            "keySig": "@D Minor"
+        },
+        {
+            "type": "pattern_definition",
+            "name": "MainTheme",
+            "body": [
+                {
+                    "type": "note_statement",
+                    "note": "D4",
+                    "duration": "half"
+                },
+                {
+                    "type": "note_statement",
+                    "note": "F4",
+                    "duration": "quarter"
+                },
+                {
+                    "type": "note_statement",
+                    "note": "A4",
+                    "duration": "quarter"
+                },
+                {
+                    "type": "repeat_statement",
+                    "count": 3,
+                    "body": [
+                        {
+                            "type": "note_statement",
+                            "note": "D4",
+                            "duration": "eighth"
+                        },
+                        {
+                            "type": "note_statement",
+                            "note": "F4",
+                            "duration": "eighth"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "pattern_definition",
+            "name": "Bridge",
+            "body": [
+                {
+                    "type": "note_statement",
+                    "note": "G4",
+                    "duration": "quarter"
+                },
+                {
+                    "type": "note_statement",
+                    "note": "B4",
+                    "duration": "quarter"
+                },
+                {
+                    "type": "repeat_statement",
+                    "count": 2,
+                    "body": [
+                        {
+                            "type": "pattern_reference",
+                            "name": "MainTheme"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "pattern_definition",
+            "name": "High",
+            "body": [
+                {
+                    "type": "note_statement",
+                    "note": "C4",
+                    "duration": "quarter"
+                },
+                {
+                    "type": "note_statement",
+                    "note": "D3",
+                    "duration": "quarter"
+                },
+                {
+                    "type": "repeat_statement",
+                    "count": 2,
+                    "body": [
+                        {
+                            "type": "pattern_reference",
+                            "name": "Bridge"
+                        }
+                    ]
+                },
+                {
+                    "type": "repeat_statement",
+                    "count": 2,
+                    "body": [
+                        {
+                            "type": "pattern_reference",
+                            "name": "MainTheme"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "assignment_statement",
+            "name": "fullPiece",
+            "expression": {
+                "type": "addition_expression",
+                "operator": "+",
+                "left": {
+                    "type": "identifier",
+                    "name": "MainTheme"
+                },
+                "right": {
+                    "type": "addition_expression",
+                    "operator": "+",
+                    "left": {
+                        "type": "identifier",
+                        "name": "Bridge"
+                    },
+                    "right": {
+                        "type": "addition_expression",
+                        "operator": "+",
+                        "left": {
+                            "type": "identifier",
+                            "name": "Main"
+                        },
+                        "right": {
+                            "type": "identifier",
+                            "name": "High"
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
