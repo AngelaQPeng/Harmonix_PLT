@@ -330,7 +330,7 @@ python3 src/parser_runner.py sample_input_parser/Sample6_input.txt runner_output
 
 # Part 3 - Python Code Generator 
 ## Python Code Generator Introduction 
-The ** Harmonix Python Code Generator** transforms an abstract syntax tree (AST) of a Harmonix Music Notations into Python code. 
+The Harmonix Python Code Generator transforms an abstract syntax tree (AST) of a Harmonix Music Notations into Python code. 
 
 ### Features
 1. **AST to Python Code**: Converts AST nodes into Python functions and statements.
@@ -401,16 +401,6 @@ python3 src/python_generator_runner.py sample_input_codegen/input7.txt runner_ou
 python3 src/python_generator_runner.py sample_input_codegen/input8.txt runner_output_codegen/output_8.py
 ```
 
-# Video Demonstrations
-
-## Scanner & Parser
-
-https://www.youtube.com/watch?v=rLWjSOUssLg
-
-This video covers the following:
-1. Demonstrate how the input is being parsed by the scanner.
-2. Demonstrate how the scanner output is fed to the parser to generate AST
-
 # Shell Script to Execute Entire Compiler
 The `run_harmonix.sh` script automates the process of executing the Harmonix compiler. It includes the following stages:
 
@@ -438,3 +428,21 @@ A sample command & sample Harmonix source code with complex, nested structure is
 ```bash
 ./run_harmonix.sh run_harmonix_compiler/sample_code.txt run_harmonix_compiler
 ```
+
+# Video Demonstrations
+
+## Scanner & Parser
+
+https://www.youtube.com/watch?v=rLWjSOUssLg
+
+This video covers the following:
+1. Demonstrate how the input is being parsed by the scanner.
+2. Demonstrate how the scanner output is fed to the parser to generate AST
+
+## Code Generation
+
+https://youtu.be/__1GN2lB5Sg
+
+This video covers the following:
+1. Demonstrate the entire compiler including shell script to generate scanner, parser, and code generation.
+2. Demonstration on code generation, dead code elimination, error handling capabilities of code generation portion.
