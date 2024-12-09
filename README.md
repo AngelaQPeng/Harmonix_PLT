@@ -411,3 +411,30 @@ This video covers the following:
 1. Demonstrate how the input is being parsed by the scanner.
 2. Demonstrate how the scanner output is fed to the parser to generate AST
 
+# Shell Script to Execute Entire Compiler
+The `run_harmonix.sh` script automates the process of executing the Harmonix compiler. It includes the following stages:
+
+- Check for Python Installation
+
+- Scanning: Converts the Harmonix source code into tokens using the scanner.
+output is `scanner_output.txt`  in output_directory
+
+- Parsing: Processes the tokens to build an Abstract Syntax Tree (AST).
+output is `parser_output.txt` in output_directory
+
+- Code Generation: Translates the AST into executable Python code.
+output is `output.py` in output_directory
+
+To execute the compiler, use the following command:
+
+```bash
+./run_harmonix.sh <input_file> [output_directory]
+```
+
+`<input_file>`: The path to the Harmonix source code file.
+`[output_directory]`: The directory where all intermediate and final outputs will be stored.
+
+A sample command & sample Harmonix source code with complex, nested structure is already provided in the run_harmonix folder. You can execute it using the following command:
+```bash
+./run_harmonix.sh run_harmonix_compiler/sample_code.txt run_harmonix_compiler
+```
