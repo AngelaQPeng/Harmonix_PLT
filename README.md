@@ -1,5 +1,5 @@
 # Harmonix_PLT
-We are creating a language for encoding musical notations into codes, which would translate musical scores into various formats of digital sheet music. This would allow musicians and music producers to compose in a consistent, readable format.
+We are creating a language for encoding musical notations into codes, which would translate musical scores into various formats of digital sheet music. This would allow musicians and music producers to compose in a consistent, readable format. Our harmonix will translate our language into the Python language.
 
 ## Team Members
 Angela Peng (ap4636), Haoyuan Lu (hl3812)
@@ -328,6 +328,107 @@ python3 src/parser_runner.py sample_input_parser/Sample5_input.txt runner_output
 python3 src/parser_runner.py sample_input_parser/Sample6_input.txt runner_output_parser/output6.txt
 ```
 
+# Part 3 - Python Code Generator 
+## Python Code Generator Introduction 
+The Harmonix Python Code Generator transforms an abstract syntax tree (AST) of a Harmonix Music Notations into Python code. 
+
+### Features
+1. **AST to Python Code**: Converts AST nodes into Python functions and statements.
+2. **Semantic Checking**:
+   - Validates that all referenced pattern names are previously defined.
+   - Throws an error for undefined pattern references.
+   - Throws an error for duplicate definition of a specific pattern.
+3. **Unused Pattern Detection**: Removes generated code for patterns that are defined but never used.
+4. **Repetition Support**: Handles nested repeat loops by generating Python loops and recursion.
+
+## Semantic Rules
+The only semantic checks needed and performed are on **pattern names**, ensuring all referenced patterns are defined. This enforces the language's primary focus on pattern reusability and correctness. 
+
+## Sample Inputs & Outputs - Code Generator 
+### Sample Input 1
+Sample input 1 is a simple program that can be correctly parsed by Harmonix Python Code generator.
+
+### Sample Input 2
+Sample input 2 defines a simple musical composition using the Harmonix language. It includes metadata, a melody pattern, and an assignment operation that manipulates the melody using repetition and addition. The program will generate the corresponding Python code.
+
+### Sample Input 3
+Sample input 3 demonstrates pattern definition, nested repetitions, pattern references, and arithmetic operations to construct complex musical structures.
+
+### Sample Input 4
+Sample input 4 is similar to sample input 2 with simple input structure that includes all operations defined in our language.
+
+### Sample Input 5
+Sample input 5 is similar to sample input 3 with complex AST as input that contains various nested functions.
+
+### Sample Input 6
+Sample input 6 showcases symantic analysis ability. Specifically, the addition expression used undefined keyword (pattern name), and it would throw "Error: Undefined pattern referenced: Main"
+
+### Sample Input 7
+Sample input 7 showcases dead code elimination. In the input,there is an unused pattern Bridge, thus, the python code generator would throw "Warning: Removing unused patterns: Bridge" and continue to generate Python code without Bridge pattern definition .
+
+### Sample Input 8
+Sample input 8 showcases duplicate definition checking. Specifically, the input contains repeated definition of pattern 'MainTheme'. And the generator would throw "Error: Duplicate pattern definition: MainTheme"
+
+## Run Harmonix Parser
+Harmonix Parser can be executed locally with the following command:
+
+```bash
+# 'input.txt' needs to be replaced by the actual file name
+python3 src/_runner.py sample_input/input.txt runner_output/output.txt
+
+# Running Sample Input 1
+python3 src/python_generator_runner.py sample_input_codegen/input1.txt runner_output_codegen/output_1.py
+
+# Running Sample Input 2
+python3 src/python_generator_runner.py sample_input_codegen/input2.txt runner_output_codegen/output_2.py
+
+# Running Sample Input 3
+python3 src/python_generator_runner.py sample_input_codegen/input3.txt runner_output_codegen/output_3.py
+
+# Running Sample Input 4
+python3 src/python_generator_runner.py sample_input_codegen/input4.txt runner_output_codegen/output_4.py
+
+# Running Sample Input 5
+python3 src/python_generator_runner.py sample_input_codegen/input5.txt runner_output_codegen/output_5.py
+
+# Running Sample Input 6
+python3 src/python_generator_runner.py sample_input_codegen/input6.txt runner_output_codegen/output_6.py
+
+# Running Sample Input 7
+python3 src/python_generator_runner.py sample_input_codegen/input7.txt runner_output_codegen/output_7.py
+
+# Running Sample Input 8
+python3 src/python_generator_runner.py sample_input_codegen/input8.txt runner_output_codegen/output_8.py
+```
+
+# Shell Script to Execute Entire Compiler
+The `run_harmonix.sh` script automates the process of executing the Harmonix compiler. It includes the following stages:
+
+- Check for Python Installation
+
+- Scanning: Converts the Harmonix source code into tokens using the scanner.
+output is `scanner_output.txt`  in output_directory
+
+- Parsing: Processes the tokens to build an Abstract Syntax Tree (AST).
+output is `parser_output.txt` in output_directory
+
+- Code Generation: Translates the AST into executable Python code.
+output is `output.py` in output_directory
+
+To execute the compiler, use the following command:
+
+```bash
+./run_harmonix.sh <input_file> [output_directory]
+```
+
+`<input_file>`: The path to the Harmonix source code file.
+`[output_directory]`: The directory where all intermediate and final outputs will be stored.
+
+A sample command & sample Harmonix source code with complex, nested structure is already provided in the run_harmonix folder. You can execute it using the following command:
+```bash
+./run_harmonix.sh run_harmonix_compiler/sample_code.txt run_harmonix_compiler
+```
+
 # Video Demonstrations
 
 ## Scanner & Parser
@@ -338,3 +439,10 @@ This video covers the following:
 1. Demonstrate how the input is being parsed by the scanner.
 2. Demonstrate how the scanner output is fed to the parser to generate AST
 
+## Code Generation
+
+https://youtu.be/__1GN2lB5Sg
+
+This video covers the following:
+1. Demonstrate the entire compiler including shell script to generate scanner, parser, and code generation.
+2. Demonstration on code generation, dead code elimination, error handling capabilities of code generation portion.
