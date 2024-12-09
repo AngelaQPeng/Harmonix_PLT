@@ -1,5 +1,5 @@
 # Harmonix_PLT
-We are creating a language for encoding musical notations into codes, which would translate musical scores into various formats of digital sheet music. This would allow musicians and music producers to compose in a consistent, readable format.
+We are creating a language for encoding musical notations into codes, which would translate musical scores into various formats of digital sheet music. This would allow musicians and music producers to compose in a consistent, readable format. Our harmonix will translate our language into the Python language.
 
 ## Team Members
 Angela Peng (ap4636), Haoyuan Lu (hl3812)
@@ -326,6 +326,79 @@ python3 src/parser_runner.py sample_input_parser/Sample5_input.txt runner_output
 
 # Running Sample Input 6
 python3 src/parser_runner.py sample_input_parser/Sample6_input.txt runner_output_parser/output6.txt
+```
+
+# Part 3 - Python Code Generator 
+## Python Code Generator Introduction 
+The ** Harmonix Python Code Generator** transforms an abstract syntax tree (AST) of a Harmonix Music Notations into Python code. 
+
+### Features
+1. **AST to Python Code**: Converts AST nodes into Python functions and statements.
+2. **Semantic Checking**:
+   - Validates that all referenced pattern names are previously defined.
+   - Throws an error for undefined pattern references.
+   - Throws an error for duplicate definition of a specific pattern.
+3. **Unused Pattern Detection**: Removes generated code for patterns that are defined but never used.
+4. **Repetition Support**: Handles nested repeat loops by generating Python loops and recursion.
+
+## Semantic Rules
+The only semantic checks needed and performed are on **pattern names**, ensuring all referenced patterns are defined. This enforces the language's primary focus on pattern reusability and correctness. 
+
+## Sample Inputs & Outputs - Code Generator 
+### Sample Input 1
+Sample input 1 is a simple program that can be correctly parsed by Harmonix Python Code generator.
+
+### Sample Input 2
+To do:
+
+### Sample Input 3
+To do:
+
+### Sample Input 4
+To do:
+
+### Sample Input 5
+To do:
+
+### Sample Input 6
+Sample input 6 showcases symantic analysis ability. Specifically, the addition expression used undefined keyword (pattern name), and it would throw "Error: Undefined pattern referenced: Main"
+
+### Sample Input 7
+Sample input 7 showcases dead code elimination. In the input,there is an unused pattern Bridge, thus, the python code generator would throw "Warning: Removing unused patterns: Bridge" and continue to generate Python code without Bridge pattern definition .
+
+### Sample Input 8
+Sample input 8 showcases duplicate definition checking. Specifically, the input contains repeated definition of pattern 'MainTheme'. And the generator would throw "Error: Duplicate pattern definition: MainTheme"
+
+## Run Harmonix Parser
+Harmonix Parser can be executed locally with the following command:
+
+```bash
+# 'input.txt' needs to be replaced by the actual file name
+python3 src/_runner.py sample_input/input.txt runner_output/output.txt
+
+# Running Sample Input 1
+python3 src/python_generator_runner.py sample_input_codegen/input1.txt runner_output_codegen/output_1.py
+
+# Running Sample Input 2
+python3 src/python_generator_runner.py sample_input_codegen/input2.txt runner_output_codegen/output_2.py
+
+# Running Sample Input 3
+python3 src/python_generator_runner.py sample_input_codegen/input3.txt runner_output_codegen/output_3.py
+
+# Running Sample Input 4
+python3 src/python_generator_runner.py sample_input_codegen/input4.txt runner_output_codegen/output_4.py
+
+# Running Sample Input 5
+python3 src/python_generator_runner.py sample_input_codegen/input5.txt runner_output_codegen/output_5.py
+
+# Running Sample Input 6
+python3 src/python_generator_runner.py sample_input_codegen/input6.txt runner_output_codegen/output_6.py
+
+# Running Sample Input 7
+python3 src/python_generator_runner.py sample_input_codegen/input7.txt runner_output_codegen/output_7.py
+
+# Running Sample Input 8
+python3 src/python_generator_runner.py sample_input_codegen/input8.txt runner_output_codegen/output_8.py
 ```
 
 # Video Demonstrations
