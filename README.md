@@ -349,16 +349,16 @@ The only semantic checks needed and performed are on **pattern names**, ensuring
 Sample input 1 is a simple program that can be correctly parsed by Harmonix Python Code generator.
 
 ### Sample Input 2
-To do:
+Sample input 2 defines a simple musical composition using the Harmonix language. It includes metadata, a melody pattern, and an assignment operation that manipulates the melody using repetition and addition. The program will generate the corresponding Python code.
 
 ### Sample Input 3
-To do:
+Sample input 3 demonstrates pattern definition, nested repetitions, pattern references, and arithmetic operations to construct complex musical structures.
 
 ### Sample Input 4
-To do:
+Sample input 4 is similar to sample input 2 with simple input structure that includes all operations defined in our language.
 
 ### Sample Input 5
-To do:
+Sample input 5 is similar to sample input 3 with complex AST as input that contains various nested functions.
 
 ### Sample Input 6
 Sample input 6 showcases symantic analysis ability. Specifically, the addition expression used undefined keyword (pattern name), and it would throw "Error: Undefined pattern referenced: Main"
