@@ -99,4 +99,44 @@ class PythonCodeGenerator:
                     )
         self.generated_code.append(f"final_pattern = {repeat_var}")
 
+    def process_assignment_statement(self, stmt):
+        name = stmt["name"]
+        expression_code = self.generate_expression(stmt["expression"])
+        self.generated_code.append(f"{name} = {expression_code}")
+
+    def generate_expression(self, expr):
+        if expr["type"] == "identifier":
+            return f"{expr['name']}()"
+        elif expr["type"] == "addition_expression":
+            left = self.generate_expression(expr["left"])
+            right = self.generate_expression(expr["right"])
+            return f"({left} + {right})"
+        elif expr["type"] == "repeat_statement":
+            return self.generate_repeat_expression(expr)
+        else:
+            raise ValueError(f"Unknown expression type: {expr['type']}")
+
+    def generate_repeat_expression(self, expr):
+        count = expr.get("count")
+        body = expr.get("body")
+        if count is None or body is None:
+            raise ValueError(f"Invalid repeat expression: {expr}")
+
+        repeat_var = f"repeat_result_{self.repeat_counter}"
+        self.repeat_counter += 1
+
+        self.generated_code.append(f"{repeat_var} = []")
+        self.generated_code.append(f"for _ in range({count}):")
+        for body_stmt in body:
+            if body_stmt["type"] == "pattern_reference":
+                pattern_name = body_stmt["name"]
+                self.generated_code.append(f"    {repeat_var}.extend({pattern_name}())")
+            elif body_stmt["type"] == "note_statement":
+                note = body_stmt.get("note")
+                duration = body_stmt.get("duration")
+                if note and duration:
+                    self.generated_code.append(
+                        f"    {repeat_var}.append({{'note': '{note}', 'duration': '{duration}'}})"
+                    )
+        return repeat_var
 
