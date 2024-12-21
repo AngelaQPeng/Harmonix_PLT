@@ -499,6 +499,8 @@ This video covers the following:
 
 ## Code Optimization
 
+https://youtu.be/VsIV1ullXWs
+
 This video covers the following:
 1. Demonstrate the entire compiler including shell script to generate scanner, parser, code generation, and code optimization process.
 2. Demonstration on code optimization, including optimization on the creating cached variables on patterns, using multiplication to replace duplicate addition,  and optimizations on the for loop (such as remove the meaning for loop)
