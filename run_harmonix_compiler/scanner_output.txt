@@ -50,7 +50,7 @@
 <KEYWORD, duration>
 <DURATION, quarter>
 <KEYWORD, repeat>
-<INTLITERAL, 2>
+<INTLITERAL, 1>
 <DELIMITER, {>
 <IDENTIFIER, MainTheme>
 <DELIMITER, }>
@@ -67,12 +67,12 @@
 <KEYWORD, duration>
 <DURATION, quarter>
 <KEYWORD, repeat>
-<INTLITERAL, 2>
+<INTLITERAL, 1>
 <DELIMITER, {>
 <IDENTIFIER, Bridge>
 <DELIMITER, }>
 <KEYWORD, repeat>
-<INTLITERAL, 2>
+<INTLITERAL, 1>
 <DELIMITER, {>
 <IDENTIFIER, MainTheme>
 <DELIMITER, }>

@@ -369,12 +369,12 @@ Sample input 7 showcases dead code elimination. In the input,there is an unused 
 ### Sample Input 8
 Sample input 8 showcases duplicate definition checking. Specifically, the input contains repeated definition of pattern 'MainTheme'. And the generator would throw "Error: Duplicate pattern definition: MainTheme"
 
-## Run Harmonix Parser
-Harmonix Parser can be executed locally with the following command:
+## Run Harmonix Code Generator
+Harmonix Code Generator can be executed locally with the following command:
 
 ```bash
 # 'input.txt' needs to be replaced by the actual file name
-python3 src/_runner.py sample_input/input.txt runner_output/output.txt
+python3 src/python_generator_runner.py sample_input/input.txt runner_output/output.txt
 
 # Running Sample Input 1
 python3 src/python_generator_runner.py sample_input_codegen/input1.txt runner_output_codegen/output_1.py
@@ -401,6 +401,53 @@ python3 src/python_generator_runner.py sample_input_codegen/input7.txt runner_ou
 python3 src/python_generator_runner.py sample_input_codegen/input8.txt runner_output_codegen/output_8.py
 ```
 
+# Part 4 - Python Code Optimizer
+## Python Code Optimizer Introduction 
+The Harmonix Python Code Generator transforms an abstract syntax tree (AST) of a Harmonix Music Notations into Python code. 
+
+### Features
+1. **Combine Repeated Appends**: Optimizes repeated list `append` operations by replacing them with a single `extend` call that multiplies the list by the repetition count.
+
+2. **Cached Variable Usage**: Implements variable caching to store patterns, reducing repeated function calls and improving performance.
+
+3. **Loop Optimization**: Replaces simple `for` loops that only has single extend statement with a single `extend` call with multiplication, leveraging cached function results multiplied by the repetition count, effectively reducing overhead.
+
+4. **Multiplication by 1 Detection and Removal**: Identifies and eliminates unnecessary multiplications by 1, ensuring clean and efficient code.
+
+## Sample Inputs & Outputs - Code Generator 
+### Sample Input 1
+Sample input 1 demonstrates **Combine Repeated Appends** and **Cached Variable Usage** optimization
+
+### Sample Input 2
+Sample input 2 demonstrates **Cached Variable Usage** optimization
+
+### Sample Input 3
+Sample input 3 demonstrates **Loop Optimization**
+
+### Sample Input 4
+Sample input 3 demonstrates **Multiplication by 1 Detection and Removal** optimization
+
+
+## Run Harmonix Optimizer
+Harmonix Code Generator can be executed locally with the following command:
+
+```bash
+# 'input.txt' needs to be replaced by the actual file name
+python3 src/optimizer_runner.py sample_input/input.txt runner_output/output.txt
+
+# Running Sample Input 1
+python3 ./src/optimizer_runner.py ./sample_input_optimizer/Sample1_input.py ./runner_output_optimizer/output1.py
+
+# Running Sample Input 2
+python3 ./src/optimizer_runner.py ./sample_input_optimizer/Sample2_input.py ./runner_output_optimizer/output2.py
+
+# Running Sample Input 3
+python3 ./src/optimizer_runner.py ./sample_input_optimizer/Sample3_input.py ./runner_output_optimizer/output3.py
+
+# Running Sample Input 4
+python3 ./src/optimizer_runner.py ./sample_input_optimizer/Sample4_input.py ./runner_output_optimizer/output4.py
+```
+
 # Shell Script to Execute Entire Compiler
 The `run_harmonix.sh` script automates the process of executing the Harmonix compiler. It includes the following stages:
 
@@ -414,6 +461,9 @@ output is `parser_output.txt` in output_directory
 
 - Code Generation: Translates the AST into executable Python code.
 output is `output.py` in output_directory
+
+- Code Optimization: Optimize the existing Python Code 
+output is `optimized_output.py` in output_directory
 
 To execute the compiler, use the following command:
 
@@ -446,3 +496,9 @@ https://youtu.be/__1GN2lB5Sg
 This video covers the following:
 1. Demonstrate the entire compiler including shell script to generate scanner, parser, and code generation.
 2. Demonstration on code generation, dead code elimination, error handling capabilities of code generation portion.
+
+## Code Optimization
+
+This video covers the following:
+1. Demonstrate the entire compiler including shell script to generate scanner, parser, code generation, and code optimization process.
+2. Demonstration on code optimization, including optimization on the creating cached variables on patterns, using multiplication to replace duplicate addition,  and optimizations on the for loop (such as remove the meaning for loop)

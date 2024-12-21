@@ -43,6 +43,10 @@ python3 src/parser_runner.py "$OUTPUT_DIR/scanner_output.txt" "$OUTPUT_DIR/parse
 echo -e "${GREEN}Running Code Generator...${NC}"
 python3 src/python_generator_runner.py "$OUTPUT_DIR/parser_output.txt" "$OUTPUT_DIR/output.py"
 
+# Run Code Generator
+echo -e "${GREEN}Running Code Optimizer...${NC}"
+python3 src/optimizer_runner.py "$OUTPUT_DIR/output.py" "$OUTPUT_DIR/optimized_output.py"
+
 # Completion
 echo -e "${GREEN}Compilation completed successfully.${NC}"
 echo "Generated Python code is available at: $OUTPUT_DIR/output.py"
