@@ -18,7 +18,7 @@ pattern MainTheme {
 pattern Bridge {
     note G4 duration quarter
     note B4 duration quarter
-    repeat 2 {
+    repeat 1 {
         MainTheme
     }
 }
@@ -26,10 +26,10 @@ pattern Bridge {
 pattern High {
     note C4 duration quarter
     note D3 duration quarter
-    repeat 2 {
+    repeat 1 {
         Bridge
     }
-    repeat 2 {
+    repeat 1 {
         MainTheme
     }
 }

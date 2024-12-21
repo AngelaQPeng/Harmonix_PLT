@@ -20,7 +20,7 @@ def Bridge():
     pattern.append({'note': 'G4', 'duration': 'quarter'})
     pattern.append({'note': 'B4', 'duration': 'quarter'})
     repeat_result_1 = []
-    for _ in range(1):
+    for _ in range(2):
         repeat_result_1.extend(MainTheme())
     pattern.extend(repeat_result_1)
     return pattern
@@ -29,11 +29,11 @@ def High():
     pattern.append({'note': 'C4', 'duration': 'quarter'})
     pattern.append({'note': 'D3', 'duration': 'quarter'})
     repeat_result_2 = []
-    for _ in range(1):
+    for _ in range(2):
         repeat_result_2.extend(Bridge())
     pattern.extend(repeat_result_2)
     repeat_result_3 = []
-    for _ in range(1):
+    for _ in range(2):
         repeat_result_3.extend(MainTheme())
     pattern.extend(repeat_result_3)
     return pattern
