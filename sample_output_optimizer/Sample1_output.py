@@ -12,6 +12,5 @@ def MainMelody():
     return pattern
 cached_MainMelody = MainMelody()
 repeat_result_0 = []
-for _ in range(2):
-    repeat_result_0.extend(cached_MainMelody)
+repeat_result_0.extend(cached_MainMelody * 2)
 a = repeat_result_0 + (cached_MainMelody + (cached_MainMelody + (cached_MainMelody + cached_MainMelody)))

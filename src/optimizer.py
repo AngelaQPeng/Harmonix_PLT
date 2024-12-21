@@ -12,17 +12,19 @@ class MusicPatternOptimizer(ast.NodeTransformer):
             isinstance(node.body[0].value, ast.Call) and 
             isinstance(node.body[0].value.func, ast.Attribute) and 
             node.body[0].value.func.attr == "extend"):
-            
+
+            target_variable = node.body[0].value.func.value.id
             extend_arg = node.body[0].value.args[0]
             if isinstance(extend_arg, ast.Call):
                 func_name = extend_arg.func.id
+                print(func_name)
                 if func_name in self.cached_calls:
                     loop_count = node.iter.args[0].value
                     if loop_count == 1:
                         return ast.Expr(
                             value=ast.Call(
                                 func=ast.Attribute(
-                                    value=ast.Name(id="pattern", ctx=ast.Load()),
+                                    value=ast.Name(id=target_variable, ctx=ast.Load()),
                                     attr="extend",
                                     ctx=ast.Load()
                                 ),
@@ -36,7 +38,7 @@ class MusicPatternOptimizer(ast.NodeTransformer):
                         return ast.Expr(
                             value=ast.Call(
                                 func=ast.Attribute(
-                                    value=ast.Name(id="pattern", ctx=ast.Load()),
+                                    value=ast.Name(id=target_variable, ctx=ast.Load()),
                                     attr="extend",
                                     ctx=ast.Load()
                                 ),

@@ -23,7 +23,7 @@ def Bridge():
     pattern.append({'note': 'G4', 'duration': 'quarter'})
     repeat_result_1 = []
     pattern.append({'note': 'B4', 'duration': 'quarter'})
-    pattern.extend(cached_MainTheme * 2)
+    repeat_result_1.extend(cached_MainTheme * 2)
     pattern.extend(repeat_result_1)
     return pattern
 cached_Bridge = Bridge()
@@ -33,10 +33,10 @@ def High():
     pattern.append({'note': 'C4', 'duration': 'quarter'})
     repeat_result_2 = []
     pattern.append({'note': 'D3', 'duration': 'quarter'})
-    pattern.extend(cached_Bridge * 2)
+    repeat_result_2.extend(cached_Bridge * 2)
     pattern.extend(repeat_result_2)
     repeat_result_3 = []
-    pattern.extend(cached_MainTheme * 2)
+    repeat_result_3.extend(cached_MainTheme * 2)
     pattern.extend(repeat_result_3)
     return pattern
 cached_High = High()
